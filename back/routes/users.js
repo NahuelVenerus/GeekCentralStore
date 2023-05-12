@@ -2,10 +2,9 @@ const express = require("express");
 const router = express.Router();
 const Users = require("../models/User");
 const { validateUser } = require("../middlewares/validateUser");
-const { defaults } = require("pg");
 const { generateToken } = require("../config/token");
 
-router.post("/signup", (req, res, next) => {
+router.post("/signup", (req, res) => {
   Users.findOne({ where: { nickname: req.body.nickname } }).then((user) => {
     if (user) {
       alert("el usuario ya existe");
@@ -19,7 +18,6 @@ router.post("/signup", (req, res, next) => {
 router.post("/login", (req, res) => {
   const { nickname, contrasenia } = req.body;
   Users.findOne({ where: { nickname } }).then((user) => {
-    // console.log("soy primer user=>", user);
     if (!user) return res.sendStatus(401);
     user.validatePassword(contrasenia).then((isValid) => {
       if (!isValid) return res.sendStatus(401);
