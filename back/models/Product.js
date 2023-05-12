@@ -15,7 +15,7 @@ Product.init(
         "https://www.webstoresl.com/sellercenter/assets/images/no-product-image.png",
     },
     cantVentas: { type: Sequelize.INTEGER, defaultValue: 0 },
-    categoria: { type: Sequelize.STRING, defaultValue: [] },
+    categoria: { type: Sequelize.ARRAY(Sequelize.STRING), defaultValue: [] },
   },
   { sequelize: db, modelName: "product" }
 );
