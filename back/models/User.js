@@ -3,13 +3,12 @@ const db = require("../db/index");
 const bc = require("bcrypt");
 
 class User extends S.Model {
-  createHash(contraseña, salt) {
-    return bc.hash(contraseña, salt);
+  createHash(contrasenia, salt) {
+    return bc.hash(contrasenia, salt);
   }
-
-  validatePassword(contraseña) {
-    return this.createHash(contraseña, this.salt).then(
-      (newhash) => newhash === this.password
+  validatePassword(contrasenia) {
+    return this.createHash(contrasenia, this.salt).then(
+      (newhash) => newhash === this.contrasenia
     );
   }
 }
@@ -17,12 +16,13 @@ class User extends S.Model {
 User.init(
   {
     nombre: { type: S.STRING, require: true },
+    nickname: { type: S.STRING, require: true },
     apellido: { type: S.STRING, require: true },
     direccion: { type: S.STRING, require: true },
     codigo_postal: { type: S.INTEGER, require: true },
     ciudad: { type: S.STRING, require: true },
     email: { type: S.STRING, require: true },
-    contraseña: { type: S.STRING, require: true },
+    contrasenia: { type: S.STRING, require: true },
     // id_cupon: { type: S.INTEGER },
     salt: { type: S.STRING },
   },
@@ -36,8 +36,8 @@ User.addHook("beforeCreate", (user) => {
   const salt = bc.genSaltSync();
   user.salt = salt;
   return user
-    .createHash(user.contraseña, user.salt)
-    .then((result) => (user.contraseña = result))
+    .createHash(user.contrasenia, user.salt)
+    .then((result) => (user.contrasenia = result))
     .catch((err) => console.log(err));
 });
 
