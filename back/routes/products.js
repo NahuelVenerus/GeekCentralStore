@@ -1,19 +1,15 @@
 const express = require("express");
-const { Product } = require("../models");
+const {
+  mostrar_todos_los_productos,
+  detalles_de_producto,
+  agregar_nuevo_producto,
+} = require("../controllers/productsController");
 const router = express.Router();
 
-router.get("/", (req, res) => {
-  Product.findAll().then((prods) => res.status(200).send(prods));
-});
+router.get("/", mostrar_todos_los_productos);
 
-router.get("/:id", (req, res) => {
-  Product.findOne({ where: { id: req.params.id } })
-    .then((prod) => res.status(200).send(prod))
-    .catch((err) => console.log(err));
-});
+router.get("/:id", detalles_de_producto);
 
-router.post("/add", (req, res) => {
-  Product.create(req.body).then((prod) => res.status(201).send(prod));
-});
+router.post("/add", agregar_nuevo_producto);
 
 module.exports = router;
