@@ -6,7 +6,7 @@ const carrito = require("./carritos");
 const productCarrito = require("./productCarrito");
 
 router.use("/users", users);
-router.use("/products", products);
+router.use("/productos", products);
 router.use("/carrito", carrito);
 router.use("/productoCarrito", productCarrito);
 
