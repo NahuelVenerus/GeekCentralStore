@@ -48,4 +48,10 @@ router.post("/logout", (req, res) => {
   res.sendStatus(204);
 });
 
+router.get("/users/:id", (req, res) => {
+  Carrito.findAll({ where: { userId: req.params.id } })
+    .then((carrito) => res.status(200).send(carrito))
+    .catch((err) => console.log(err));
+});
+
 module.exports = router;
