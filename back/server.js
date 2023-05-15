@@ -7,7 +7,7 @@ const app = express();
 const models = require("./models");
 
 app.use(cookieParser());
-app.use(cors());
+app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 app.use(express.json());
 app.use("/api", router);
 
