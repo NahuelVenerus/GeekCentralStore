@@ -1,4 +1,5 @@
-import React from "react";
+import { BASE_ROUTE } from "./rutas";
+import React, { useEffect } from "react";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
@@ -7,8 +8,14 @@ import Carrito from "./components/Carrito";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import Footer from "./commons/Footer";
+import axios from "axios";
 
 function App() {
+  useEffect(() => {
+    axios
+      .get(`${BASE_ROUTE}/api/users/me`, { withCredentials: true })
+      .then((resp) => console.log(resp.data.user));
+  }, []);
   return (
     <div className="App">
       <Navbar />
