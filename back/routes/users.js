@@ -48,17 +48,10 @@ router.post("/logout", (req, res) => {
   res.sendStatus(204);
 });
 
-router.put("/:nickname", (req, res, next) => {
-  Users.update(req.body, {
-    where: {
-      nickname: req.params.nickname,
-    },
-    returning: true,
-  })
-    .then(([affectedRows, updated_user]) => {
-      res.status(200).send(updated_user[0]);
-    })
-    .catch(next);
+router.get("/users/:id", (req, res) => {
+  Carrito.findAll({ where: { userId: req.params.id } })
+    .then((carrito) => res.status(200).send(carrito))
+    .catch((err) => console.log(err));
 });
 
 module.exports = router;

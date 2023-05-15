@@ -23,7 +23,6 @@ User.init(
     ciudad: { type: S.STRING, require: true },
     email: { type: S.STRING, require: true },
     contrasenia: { type: S.STRING, require: true },
-    // id_cupon: { type: S.INTEGER },
     salt: { type: S.STRING },
   },
   {

@@ -1,0 +1,22 @@
+[
+  {
+  "nombre": "juancho",
+  "nickname": "jachito",
+  "apellido": "Panza",
+  "direccion": "Los molinos 1234",
+  "codigo_postal": 6234,
+  "ciudad": "Los molinos",
+  "email": "eljuanpan@gmail.com",
+  "contrasenia": "juanchito123"
+},
+{
+  "nombre": "juancho1",
+  "nickname": "jachito1",
+  "apellido": "Panza",
+  "direccion": "Los molinos 12344",
+  "codigo_postal": 62342,
+  "ciudad": "Los molinos1",
+  "email": "eljuanpan1@gmail.com",
+  "contrasenia": "juanchito1231"
+}
+]
