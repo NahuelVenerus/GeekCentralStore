@@ -12,4 +12,8 @@ router.get("/:id", (req, res) => {
     .catch((err) => console.log(err));
 });
 
+router.post("/add", (req, res) => {
+  Product.create(req.body).then((prod) => res.status(201).send(prod));
+});
+
 module.exports = router;
