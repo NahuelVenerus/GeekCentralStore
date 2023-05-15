@@ -1,21 +1,31 @@
+import { BASE_ROUTE } from "./rutas";
+import React, { useEffect } from "react";
 import "./App.css";
+import { Route, Routes } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Home from "./components/Home";
+import Carrito from "./components/Carrito";
+import Login from "./components/Login";
+import SignUp from "./components/SignUp";
+import Footer from "./commons/Footer";
+import axios from "axios";
 
 function App() {
+  useEffect(() => {
+    axios
+      .get(`${BASE_ROUTE}/api/users/me`, { withCredentials: true })
+      .then((resp) => console.log(resp.data.user));
+  }, []);
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar />
+      <Routes>
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/carrito" element={<Carrito />} />
+        <Route path="/" element={<Home />} />
+      </Routes>
+      <Footer />
     </div>
   );
 }
