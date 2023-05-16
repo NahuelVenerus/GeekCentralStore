@@ -20,7 +20,7 @@ function App() {
   useEffect(() => {
     axios
       .get(`${BASE_ROUTE}/api/users/me`, { withCredentials: true })
-      .then((resp) => dispatch(setUser(resp.data.nickname)))
+      .then((resp) => dispatch(setUser(resp.data)))
       .catch((error) => console.error(error));
   }, []);
 
@@ -31,6 +31,7 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
         <Route path="/carrito" element={<Carrito />} />
+        <Route path="/logout" element={<Home />} />
         <Route path="/productDetail/:id" element={<ProductDetail />} />
         <Route path="/" element={<Home />} />
       </Routes>
