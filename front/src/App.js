@@ -1,5 +1,5 @@
 import { BASE_ROUTE } from "./rutas";
-import React, { useEffect } from "react";
+import { React, useEffect } from "react";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
@@ -22,7 +22,7 @@ function App() {
       .get(`${BASE_ROUTE}/api/users/me`, { withCredentials: true })
       .then((resp) => dispatch(setUser(resp.data.nickname)))
       .catch((error) => console.error(error));
-  }, []);
+  });
 
   return (
     <div className="App">

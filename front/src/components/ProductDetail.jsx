@@ -1,4 +1,3 @@
-import React from "react";
 import { fakeData } from "../utils/fakeData";
 import { useParams } from "react-router";
 
@@ -7,22 +6,26 @@ const ProductDetail = () => {
   const producto = fakeData[id - 1];
 
   return (
-    <div class="col d-flex justify-content-center mb-4">
-      <div class="card shadow mb-1 bg-white rounded" style={{ width: "20rem" }}>
-        <img
-          style={{ height: "300px" }}
-          src={producto.imagen[0].url}
-          class="card-img-top"
-          alt="..."
-        />
-        <div class="card-body">
-          <h5 class="card-text">{producto.nombre}</h5>
-          <p class="card-text">{producto.descripcion}</p>
-          <h3 class="card-text">${producto.precio}</h3>
-          <p class="card-text">{producto.valoracion}</p>
-          <button id="botonCompra${element.id}" class="btn btn-info">
-            Comprar
-          </button>
+    <div className="card mb-3" style={{ maxWidth: "540px" }}>
+      <div className="row g-0">
+        <div className="col-md-4">
+          <img
+            style={{ height: "300px" }}
+            src={producto.imagen[0].url}
+            className="img-fluid rounded-start"
+            alt="..."
+          />
+        </div>
+        <div className="col-md-8">
+          <div className="card-body">
+            <h5 className="card-title">{producto.nombre}</h5>
+            <p className="card-text">{producto.descripcion}</p>
+            <h3 className="card-text">${producto.precio}</h3>
+            <p className="card-text">
+              <small className="text-muted">{producto.valoracion}</small>
+            </p>
+            <button className="btn btn-info">Comprar</button>
+          </div>
         </div>
       </div>
     </div>

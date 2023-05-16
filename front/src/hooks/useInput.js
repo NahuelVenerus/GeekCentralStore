@@ -1,4 +1,4 @@
-const { React, useState } = require("react");
+const { useState } = require("react");
 
 const useInput = () => {
   const [value, setValue] = useState("");
