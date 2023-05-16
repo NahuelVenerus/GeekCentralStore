@@ -1,23 +1,29 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-const Card = ({ name, precio, images }) => {
+const Card = ({ nombre, precio, imagen, id }) => {
   return (
-    <div>
-      <div class="col d-flex justify-content-center mb-4">
+    <div class="col d-flex justify-content-center mb-4">
+      <Link style={{ textDecoration: "none" }} to={`/productDetail/${id}`}>
         <div
           class="card shadow mb-1 bg-white rounded"
           style={{ width: "20rem" }}
         >
-          <img src={images[0].url} class="card-img-top" alt="..." />
+          <img
+            style={{ height: "300px" }}
+            src={imagen[0].url}
+            class="card-img-top"
+            alt="..."
+          />
           <div class="card-body">
-            <h5 class="card-text">{precio}</h5>
-            <p class="card-text">{name}</p>
+            <h5 class="card-text">${precio}</h5>
+            <h5 class="card-text">{nombre}</h5>
             <button id="botonCompra${element.id}" class="btn btn-info">
               Comprar
             </button>
           </div>
         </div>
-      </div>
+      </Link>
     </div>
   );
 };

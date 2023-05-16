@@ -1,16 +1,14 @@
 import Card from "./Card";
 import { fakeData } from "../utils/fakeData";
+// import { useLocation } from "react-router";
+
 const Grid = () => {
   return (
     <div class="container text-center">
       <div class="row">
-        <div class="col">
-          {fakeData.map((element) => (
-            <div>
-              <Card key={element.id} {...element} />
-            </div>
-          ))}
-        </div>
+        {fakeData.map((element) => (
+          <Card key={element.id} {...element} />
+        ))}
       </div>
     </div>
   );

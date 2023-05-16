@@ -7,6 +7,7 @@ import Carrito from "./components/Carrito";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import Footer from "./commons/Footer";
+import ProductDetail from "./components/ProductDetail.jsx";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
         <Route path="/carrito" element={<Carrito />} />
+        <Route path="/productDetail/:id" element={<ProductDetail />} />
         <Route path="/" element={<Home />} />
       </Routes>
       <Footer />
