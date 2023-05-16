@@ -30,6 +30,17 @@ exports.agregar_elemento = asyncHandler(async (req, res, next) => {
     .catch((err) => console.log(err));
 });
 
-exports.quitar_elemento = asyncHandler(async (req, res, next) => {});
+exports.quitar_elemento = asyncHandler(async (req, res) => {
+  ProductCarrito.destroy({ where: { id: req.body.id }, returning: true }).then(
+    () => res.sendStatus(202)
+  );
+});
 
-exports.registrar_usuario = asyncHandler(async (req, res, next) => {});
+exports.editar_elemento = asyncHandler(async (req, res) => {
+  ProductCarrito.update(req.body, {
+    where: { id: req.body.id },
+    returning: true,
+  }).then(([affectedRows, cart]) => {
+    res.status(200).send(cart[0]);
+  });
+});
