@@ -18,7 +18,7 @@ router.get("/users/:id", mostrar_carrito_usuario);
 
 router.put("/:nickname", actualizar_datos_usuario);
 
-router.post("/logout", deslogear_usuario);
+router.get("/logout", deslogear_usuario);
 
 router.get("/me", validateUser, (req, res) => {
   res.send(req.user);
