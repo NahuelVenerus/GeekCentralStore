@@ -4,8 +4,8 @@ import { fakeData } from "../utils/fakeData";
 
 const Grid = () => {
   return (
-    <div class="container text-center">
-      <div class="row">
+    <div className="container text-center">
+      <div className="row">
         {fakeData.map((element) => (
           <Card key={element.id} {...element} />
         ))}
