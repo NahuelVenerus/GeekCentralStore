@@ -1,19 +1,14 @@
 const express = require("express");
 const router = express.Router();
-const Users = require("../models/User");
 const { validateUser } = require("../middlewares/validateUser");
-const { generateToken } = require("../config/token");
 
-router.post("/signup", (req, res) => {
-  Users.findOne({ where: { nickname: req.body.nickname } }).then((user) => {
-    if (user) {
-      alert("el usuario ya existe");
-      res.sendStatus(400);
-    } else {
-      Users.create(req.body).then((user) => res.status(201).send(user));
-    }
-  });
-});
+const {
+  registrar_usuario,
+  logear_usuario,
+  deslogear_usuario,
+  mostrar_carrito_usuario,
+  actualizar_datos_usuario,
+} = require("../controllers/userController");
 
 router.post("/login", (req, res) => {
   const { nickname, contrasenia } = req.body;
@@ -23,49 +18,19 @@ router.post("/login", (req, res) => {
     user.validatePassword(contrasenia).then((isValid) => {
       if (!isValid) return res.sendStatus(401);
 
-      const payload = {
-        email: user.email,
-        nombre: user.nombre,
-      };
+router.post("/signup", registrar_usuario);
 
-      const token = generateToken(payload);
 
-      res.cookie("token", token);
+router.post("/login", logear_usuario);
 
-      res.send(payload);
-    });
-  });
-});
+router.get("/users/:id", mostrar_carrito_usuario);
+
+router.put("/:nickname", actualizar_datos_usuario);
+
+router.post("/logout", deslogear_usuario);
 
 router.get("/me", validateUser, (req, res) => {
   res.send(req.user);
-});
-
-router.post("/logout", (req, res) => {
-  console.log(req.cookies);
-
-  res.clearCookie("token");
-
-  res.sendStatus(204);
-});
-
-router.get("/users/:id", (req, res) => {
-  Carrito.findAll({ where: { userId: req.params.id } })
-    .then((carrito) => res.status(200).send(carrito))
-    .catch((err) => console.log(err));
-});
-
-router.put("/:nickname", (req, res, next) => {
-  Users.update(req.body, {
-    where: {
-      nickname: req.params.nickname,
-    },
-    returning: true,
-  })
-    .then(([affectedRows, updated_user]) => {
-      res.status(200).send(updated_user[0]);
-    })
-    .catch(next);
 });
 
 module.exports = router;
