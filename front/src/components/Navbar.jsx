@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Buscador from "./Buscador";
-import { setLogOut } from "../state/user";
+import { setUser } from "../state/user";
 import axios from "axios";
 import { BASE_ROUTE } from "../rutas";
 import { useDispatch } from "react-redux";
@@ -10,10 +10,10 @@ function Navbar() {
   const dispatch = useDispatch();
 
   const handleLogOut = (e) => {
-    e.preventDfault();
+    e.preventDefault();
     axios
       .post(`${BASE_ROUTE}/api/users/logout`)
-      .then((resp) => console.log(resp))
+      .then((resp) => dispatch(setUser(resp.data)))
       .catch((error) => console.error(error));
   };
 
@@ -27,8 +27,8 @@ function Navbar() {
           <button>Login</button>
         </Link>
 
-        <Link to="/logout" onClick={handleLogOut}>
-          <button>Logout</button>
+        <Link to="/logout">
+          <button onClick={handleLogOut}>Logout</button>
         </Link>
 
         <Link to="/signup">

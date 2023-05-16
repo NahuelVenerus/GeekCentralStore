@@ -16,5 +16,4 @@ const initialState = {
 
 export const userReducer = createReducer(initialState, {
   [setUser]: (state, action) => action.payload,
-  [setLogOut]: (state, action) => console.log(state),
 });
