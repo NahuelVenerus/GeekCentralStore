@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Buscador from "./Buscador";
+import { setUser } from "../state/user";
 
 function Navbar() {
   return (

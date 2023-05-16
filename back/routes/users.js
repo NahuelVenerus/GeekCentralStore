@@ -17,6 +17,7 @@ router.post("/signup", (req, res) => {
 
 router.post("/login", (req, res) => {
   const { nickname, contrasenia } = req.body;
+
   Users.findOne({ where: { nickname } }).then((user) => {
     if (!user) return res.sendStatus(401);
     user.validatePassword(contrasenia).then((isValid) => {

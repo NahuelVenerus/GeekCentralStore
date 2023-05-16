@@ -1,39 +1,45 @@
 import React from "react";
 import axios from "axios";
 import { BASE_ROUTE } from "../rutas";
-import useImput from "../hooks/useImput";
+import useInput from "../hooks/useInput";
+import { useNavigate } from "react-router";
 
 function SignUp() {
-  const nombre = useImput();
-  const nickname = useImput();
-  const apellido = useImput();
-  const direccion = useImput();
-  const codigoPostal = useImput();
-  const ciudad = useImput();
-  const email = useImput();
-  const contraseña = useImput();
+  const nombre = useInput();
+  const nickname = useInput();
+  const apellido = useInput();
+  const direccion = useInput();
+  const codigoPostal = useInput();
+  const ciudad = useInput();
+  const email = useInput();
+  const contrasenia = useInput();
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post(`${BASE_ROUTE}/api/users/signup`, {
-        Nombre: nombre.value,
-        Nickname: nickname.value,
-        Apellido: apellido.value,
-        Direccion: direccion.value,
-        codigoPostal: codigoPostal.value,
-        Ciudad: ciudad.value,
-        Email: email.value,
-        Contraseña: contraseña.value,
-      })
-      .then((user) => user)
+      .post(
+        `${BASE_ROUTE}/api/users/signup`,
+        {
+          nombre: nombre.value,
+          nickname: nickname.value,
+          apellido: apellido.value,
+          direccion: direccion.value,
+          codigoPostal: codigoPostal.value,
+          ciudad: ciudad.value,
+          email: email.value,
+          contrasenia: contrasenia.value,
+        },
+        { withCredentials: true }
+      )
+      .then(() => navigate("/login"))
       .catch((error) => console.error(error));
   };
   return (
     <form onSubmit={handleSubmit}>
       <label>
         Nombre
-        <input type="text" />
+        <input {...nombre} type="text" />
       </label>
 
       <br />
@@ -41,7 +47,7 @@ function SignUp() {
 
       <label>
         Nickname
-        <input type="text" name="" id="" />
+        <input {...nickname} type="text" name="" id="" />
       </label>
 
       <br />
@@ -49,7 +55,7 @@ function SignUp() {
 
       <label>
         Apellido
-        <input type="text" />
+        <input {...apellido} type="text" />
       </label>
 
       <br />
@@ -57,7 +63,7 @@ function SignUp() {
 
       <label>
         Direccion
-        <input type="text" />
+        <input {...direccion} type="text" />
       </label>
 
       <br />
@@ -65,7 +71,7 @@ function SignUp() {
 
       <label>
         Codigo Postal
-        <input type="text" />
+        <input {...codigoPostal} type="text" />
       </label>
 
       <br />
@@ -73,7 +79,7 @@ function SignUp() {
 
       <label>
         Ciudad
-        <input type="text" />
+        <input {...ciudad} type="text" />
       </label>
 
       <br />
@@ -81,7 +87,7 @@ function SignUp() {
 
       <label>
         Email
-        <input type="text" />
+        <input {...email} type="text" />
       </label>
 
       <br />
@@ -89,7 +95,7 @@ function SignUp() {
 
       <label>
         Contraseña
-        <input type="text" />
+        <input {...contrasenia} type="text" />
       </label>
 
       <br />

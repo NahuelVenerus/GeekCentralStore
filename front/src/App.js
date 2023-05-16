@@ -9,13 +9,19 @@ import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import Footer from "./commons/Footer";
 import axios from "axios";
+import { setUser } from "./state/user";
+import { useDispatch } from "react-redux";
 
 function App() {
+  const dispatch = useDispatch();
+
   useEffect(() => {
     axios
       .get(`${BASE_ROUTE}/api/users/me`, { withCredentials: true })
-      .then((resp) => console.log(resp.data.user));
+      .then((resp) => dispatch(setUser(resp.data.nickname)))
+      .catch((error) => console.error(error));
   }, []);
+
   return (
     <div className="App">
       <Navbar />
