@@ -8,6 +8,8 @@ import Carrito from "./components/Carrito";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import Footer from "./commons/Footer";
+import ProductDetail from "./components/ProductDetail.jsx";
+
 import axios from "axios";
 import { setUser } from "./state/user";
 import { useDispatch } from "react-redux";
@@ -29,7 +31,6 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
         <Route path="/carrito" element={<Carrito />} />
-        <Route path="/logout" element={<Home />} />
         <Route path="/" element={<Home />} />
       </Routes>
       <Footer />
