@@ -1,12 +1,12 @@
 const { React, useState } = require("react");
 
-const useImput = () => {
+const useInput = () => {
   const [value, setValue] = useState("");
 
   const onChange = (e) => {
     setValue(e.target.value);
   };
-  return { onchange: onChange, value: value };
+  return { onChange, value };
 };
 
-export default useImput;
+export default useInput;

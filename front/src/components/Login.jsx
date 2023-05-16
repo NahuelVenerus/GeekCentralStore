@@ -1,28 +1,48 @@
 import React from "react";
 import axios from "axios";
 import { BASE_ROUTE } from "../rutas";
+import { setUser } from "../state/user";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router";
+import useInput from "../hooks/useInput";
 
 function Login() {
-  const handleSubmit = () => {
+  const nickname = useInput();
+  const contrasenia = useInput();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
     axios
-      .post(`${BASE_ROUTE}/api/users/login`, { withCredentials: true })
-      .then((user) => console.log(user.data))
+      .post(
+        `${BASE_ROUTE}/api/users/login`,
+        {
+          nickname: nickname.value,
+          contrasenia: contrasenia.value,
+        },
+        { withCredentials: true }
+      )
+      .then((user) => {
+        dispatch(setUser(user.data));
+        navigate("/");
+      })
       .catch((error) => console.error(error));
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <label>
-        Nombre
-        <input type="text" />
+        Nickname
+        <input {...nickname} type="text" />
       </label>
 
       <br />
       <br />
 
       <label>
-        Nombre
-        <input type="text" />
+        Contraseña
+        <input {...contrasenia} type="text" />
       </label>
 
       <br />
