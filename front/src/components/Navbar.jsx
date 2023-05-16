@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Buscador from "./Buscador";
-import { setUser } from "../state/user";
+import { setLogOut } from "../state/user";
 import axios from "axios";
 import { BASE_ROUTE } from "../rutas";
 import { useDispatch } from "react-redux";
