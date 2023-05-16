@@ -12,7 +12,7 @@ function Navbar() {
   const handleLogOut = (e) => {
     e.preventDefault();
     axios
-      .post(`${BASE_ROUTE}/api/users/logout`)
+      .get(`${BASE_ROUTE}/api/users/logout`, { withCredentials: true })
       .then((resp) => dispatch(setUser(resp.data)))
       .catch((error) => console.error(error));
   };
