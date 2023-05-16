@@ -5,25 +5,26 @@ import { setUser } from "../state/user";
 import axios from "axios";
 import { BASE_ROUTE } from "../rutas";
 import { useDispatch } from "react-redux";
-
+import { useNavigate } from "react-router-dom";
 
 function Navbar() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleLogOut = (e) => {
     e.preventDefault();
     axios
       .get(`${BASE_ROUTE}/api/users/logout`, { withCredentials: true })
-      .then((resp) => dispatch(setUser(resp.data)))
+      .then((resp) => {
+        dispatch(setUser(resp.data));
+        navigate("/");
+      })
       .catch((error) => console.error(error));
   };
 
   return (
     <nav>
       <div>
-        <Link to="/">
-          <button>Home</button>
-        </Link>
         <Link to="/login">
           <button>Login</button>
         </Link>
