@@ -1,7 +1,7 @@
 const asyncHandler = require("express-async-handler");
 const { Carrito, User } = require("../models");
 
-exports.asignar_carrito_a_usuario = asyncHandler(async (req, res, next) => {
+exports.asignar_carrito_a_usuario = asyncHandler(async (req, res) => {
   User.findOne({ where: { email: req.body.email } })
     .then((user) => {
       Carrito.create()
