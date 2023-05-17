@@ -42,7 +42,7 @@ function Login() {
 
       <label>
         Contraseña
-        <input {...contrasenia} type="text" />
+        <input {...contrasenia} type="password" />
       </label>
 
       <br />
