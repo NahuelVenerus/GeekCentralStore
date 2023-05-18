@@ -7,6 +7,7 @@ const {
   createUser,
   updateUserData,
 } = require("../services/userServices");
+const { getUserShoppingCart } = require("../services/carritoService");
 
 exports.registrar_usuario = asyncHandler(async (req, res, next) => {
   try {
@@ -65,7 +66,7 @@ exports.actualizar_datos_usuario = asyncHandler(async (req, res, next) => {
 });
 
 exports.mostrar_carrito_usuario = asyncHandler(async (req, res, next) => {
-  Carrito.findAll({ where: { userId: req.params.id } })
-    .then((carrito) => res.status(200).send(carrito))
-    .catch((err) => console.log(err));
+  const { id } = req.params;
+  let userShoppingCart = await getUserShoppingCart(id);
+  res.status(200).send(userShoppingCart);
 });
