@@ -1,10 +1,9 @@
 const express = require("express");
-const db = require("./db");
+const db = require("./config/db/index");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const router = require("./routes");
 const app = express();
-const models = require("./models");
 
 app.use(cookieParser());
 app.use(cors({ origin: "http://localhost:3000", credentials: true }));
