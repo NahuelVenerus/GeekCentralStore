@@ -7,29 +7,28 @@ import { fakeData } from "../utils/fakeData";
 
 SwiperCore.use([Navigation]);
 
+SwiperCore.use([Navigation]);
+
 export default function Carrito() {
   const products = fakeData;
   const navigationPrevRef = useRef(null);
   const navigationNextRef = useRef(null);
-
   return (
-    <div className="swiper-container">
-      <Swiper
-        slidesPerView={3}
-        spaceBetween={20}
-        navigation={{
-          prevEl: navigationPrevRef.current,
-          nextEl: navigationNextRef.current,
-        }}
-      >
-        {products.map((product) => (
-          <SwiperSlide key={product.id}>
-            <CarritoCard product={product} />
-          </SwiperSlide>
-        ))}
-      </Swiper>
+    <Swiper
+      slidesPerView={3}
+      spaceBetween={20}
+      navigation={{
+        prevEl: navigationPrevRef.current,
+        nextEl: navigationNextRef.current,
+      }}
+    >
+      {products.map((product) => (
+        <SwiperSlide key={product.id}>
+          <CarritoCard product={product} />
+        </SwiperSlide>
+      ))}
       <div ref={navigationPrevRef} className="swiper-button-prev" />
       <div ref={navigationNextRef} className="swiper-button-next" />
-    </div>
+    </Swiper>
   );
 }
