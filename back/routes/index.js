@@ -7,9 +7,9 @@ const cartProduct = require("./cartProducts");
 const orders = require("./orders");
 
 router.use("/users", users);
-router.use("/productos", products);
-router.use("/carrito", shoppingCart);
-router.use("/productoCarrito", cartProduct);
-router.use("/pedidos", orders);
+router.use("/products", products);
+router.use("/shopping-cart", shoppingCart);
+router.use("/cart-products", cartProduct);
+router.use("/orders", orders);
 
 module.exports = router;

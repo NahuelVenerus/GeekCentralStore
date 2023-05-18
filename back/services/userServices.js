@@ -21,7 +21,7 @@ exports.createUser = async (userData) => {
 
 exports.validateUserPassword = async (user) => {
   try {
-    let validatedUser = user.validatePassword(user.contrasenia);
+    let validatedUser = user.validatePassword(user.password);
     if (validatedUser) {
       return user;
     }
