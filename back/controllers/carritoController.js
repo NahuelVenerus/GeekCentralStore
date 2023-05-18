@@ -1,12 +1,10 @@
 const asyncHandler = require("express-async-handler");
-const { Carrito, User } = require("../models");
+const { searchUser } = require("../services/userServices");
+const { createCart } = require("../services/carritoServices");
 
 exports.asignar_carrito_a_usuario = asyncHandler(async (req, res) => {
-  User.findOne({ where: { email: req.body.email } })
-    .then((user) => {
-      Carrito.create()
-        .then((carrito) => carrito.setUser(user))
-        .then((carrito) => res.status(201).send(carrito));
-    })
-    .catch((err) => console.log(err));
+  const { email } = req.body;
+  const searchedUser = await searchUser(email);
+  const newCart = await createCart(searchedUser);
+  res.status(201).send(newCart);
 });

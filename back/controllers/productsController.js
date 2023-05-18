@@ -24,10 +24,10 @@ exports.detalles_de_producto = asyncHandler(async (req, res, next) => {
   }
 });
 
-exports.agregar_nuevo_producto = asyncHandler(async (req, res, next) => {
+exports.agregar_nuevo_producto = asyncHandler(async (req, res) => {
   try {
-    let productInfo = req.body;
-    let newProduct = await addNewProduct(productInfo);
+    const productData = req.body;
+    const newProduct = await createProduct(productData);
     res.status(201).send(newProduct);
   } catch (error) {
     throw Error(error);
