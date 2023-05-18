@@ -1,15 +1,15 @@
 const express = require("express");
 const {
-  mostrar_todos_los_productos,
-  detalles_de_producto,
-  agregar_nuevo_producto,
-} = require("../controllers/productsController");
+  add_new_product,
+  get_all_products,
+  product_details,
+} = require("../controllers/productController");
 const router = express.Router();
 
-router.get("/", mostrar_todos_los_productos);
+router.get("/", get_all_products);
 
-router.get("/:id", detalles_de_producto);
+router.get("/:id", product_details);
 
-router.post("/add", agregar_nuevo_producto);
+router.post("/add", add_new_product);
 
 module.exports = router;

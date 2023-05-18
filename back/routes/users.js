@@ -3,22 +3,22 @@ const router = express.Router();
 const { validateUser } = require("../middlewares/validateUser");
 
 const {
-  registrar_usuario,
-  logear_usuario,
-  deslogear_usuario,
-  mostrar_carrito_usuario,
-  actualizar_datos_usuario,
+  get_user_shopping_cart,
+  login_user,
+  logout_user,
+  signup_user,
+  update_user_data,
 } = require("../controllers/userController");
 
-router.post("/signup", registrar_usuario);
+router.post("/signup", signup_user);
 
-router.post("/login", logear_usuario);
+router.post("/login", login_user);
 
-router.get("/users/:id", mostrar_carrito_usuario);
+router.get("/users/:id", get_user_shopping_cart);
 
-router.put("/:nickname", actualizar_datos_usuario);
+router.put("/:nickname", update_user_data);
 
-router.get("/logout", deslogear_usuario);
+router.get("/logout", logout_user);
 
 router.get("/me", validateUser, (req, res) => {
   res.send(req.user);

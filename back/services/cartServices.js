@@ -1,16 +1,15 @@
-const { Carrito } = require("../models");
-const { searchUser } = require("./userServices");
+const { ShoppingCart } = require("../models");
 
 exports.getUserShoppingCart = async (id) => {
   try {
-    let shoppingCart = await Carrito.findAll({ where: { userId: id } });
+    let shoppingCart = await ShoppingCart.findAll({ where: { userId: id } });
     return shoppingCart;
   } catch (error) {}
 };
 
 exports.createCart = async () => {
   try {
-    const newCart = Carrito.create();
+    const newCart = ShoppingCart.create();
     return newCart;
   } catch (error) {
     throw Error(error);
