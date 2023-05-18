@@ -27,11 +27,7 @@ function Navbar() {
   return (
     <nav>
       <div>
-<<<<<<< HEAD
-        {user ? (
-=======
         {user.nombre ? (
->>>>>>> refs/remotes/origin/develop
           <div>
             <Link to="/logout">
               <button onClick={handleLogOut}>Logout</button>
