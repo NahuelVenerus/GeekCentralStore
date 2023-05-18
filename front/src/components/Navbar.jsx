@@ -32,7 +32,7 @@ function Navbar() {
             <Link to="/logout">
               <button onClick={handleLogOut}>Logout</button>
             </Link>
-            <Link to="/carrito">
+            <Link to="/shopping-cart">
               <button>Carrito</button>
             </Link>
           </div>

@@ -5,14 +5,14 @@ import useInput from "../hooks/useInput";
 import { useNavigate } from "react-router";
 
 function SignUp() {
-  const nombre = useInput();
+  const name = useInput();
   const nickname = useInput();
-  const apellido = useInput();
-  const direccion = useInput();
-  const codigoPostal = useInput();
-  const ciudad = useInput();
+  const lastName = useInput();
+  const address = useInput();
+  const zip_code = useInput();
+  const city = useInput();
   const email = useInput();
-  const contrasenia = useInput();
+  const password = useInput();
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -21,14 +21,14 @@ function SignUp() {
       .post(
         `${BASE_ROUTE}/api/users/signup`,
         {
-          nombre: nombre.value,
+          name: name.value,
           nickname: nickname.value,
-          apellido: apellido.value,
-          direccion: direccion.value,
-          codigoPostal: codigoPostal.value,
-          ciudad: ciudad.value,
+          lastName: lastName.value,
+          address: address.value,
+          zip_code: zip_code.value,
+          city: city.value,
           email: email.value,
-          contrasenia: contrasenia.value,
+          password: password.value,
         },
         { withCredentials: true }
       )
@@ -39,7 +39,7 @@ function SignUp() {
     <form onSubmit={handleSubmit}>
       <label>
         Nombre
-        <input {...nombre} type="text" />
+        <input {...name} type="text" />
       </label>
 
       <br />
@@ -55,7 +55,7 @@ function SignUp() {
 
       <label>
         Apellido
-        <input {...apellido} type="text" />
+        <input {...lastName} type="text" />
       </label>
 
       <br />
@@ -63,7 +63,7 @@ function SignUp() {
 
       <label>
         Direccion
-        <input {...direccion} type="text" />
+        <input {...address} type="text" />
       </label>
 
       <br />
@@ -71,7 +71,7 @@ function SignUp() {
 
       <label>
         Codigo Postal
-        <input {...codigoPostal} type="text" />
+        <input {...zip_code} type="text" />
       </label>
 
       <br />
@@ -79,7 +79,7 @@ function SignUp() {
 
       <label>
         Ciudad
-        <input {...ciudad} type="text" />
+        <input {...city} type="text" />
       </label>
 
       <br />
@@ -95,7 +95,7 @@ function SignUp() {
 
       <label>
         Contraseña
-        <input {...contrasenia} type="password" />
+        <input {...password} type="password" />
       </label>
 
       <br />

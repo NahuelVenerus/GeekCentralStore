@@ -1,6 +1,6 @@
 import React from "react";
 
-function Buscador() {
+function Searcher() {
   return (
     <form>
       <input type="text" className="input" placeholder="Buscar" />
@@ -9,4 +9,4 @@ function Buscador() {
   );
 }
 
-export default Buscador;
+export default Searcher;
