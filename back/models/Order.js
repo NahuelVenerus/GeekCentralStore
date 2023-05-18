@@ -1,13 +1,13 @@
 const Sequelize = require("sequelize");
 const db = require("../config/db/index");
 
-class Pedido extends Sequelize.Model {}
+class Order extends Sequelize.Model {}
 
-Pedido.init(
+Order.init(
   {
     total: { type: Sequelize.FLOAT, allowNull: false },
   },
-  { sequelize: db, modelName: "pedido" }
+  { sequelize: db, modelName: "order" }
 );
 
-module.exports = Pedido;
+module.exports = Order;

@@ -1,5 +1,4 @@
 const asyncHandler = require("express-async-handler");
-const { Carrito } = require("../models");
 const {
   searchUser,
   validateUserPassword,
@@ -7,9 +6,9 @@ const {
   createUser,
   updateUserData,
 } = require("../services/userServices");
-const { getUserShoppingCart } = require("../services/carritoService");
+const { getUserShoppingCart } = require("../services/cartServices");
 
-exports.registrar_usuario = asyncHandler(async (req, res, next) => {
+exports.signup_user = asyncHandler(async (req, res, next) => {
   try {
     const { nickname } = req.body;
 
@@ -27,7 +26,7 @@ exports.registrar_usuario = asyncHandler(async (req, res, next) => {
   }
 });
 
-exports.logear_usuario = asyncHandler(async (req, res, next) => {
+exports.login_user = asyncHandler(async (req, res, next) => {
   try {
     let { nickname } = req.body;
     let searchedUser = await searchUser(nickname);
@@ -48,12 +47,12 @@ exports.logear_usuario = asyncHandler(async (req, res, next) => {
   }
 });
 
-exports.deslogear_usuario = asyncHandler(async (req, res, next) => {
+exports.logout_user = asyncHandler(async (req, res) => {
   res.clearCookie("token");
   res.sendStatus(204);
 });
 
-exports.actualizar_datos_usuario = asyncHandler(async (req, res, next) => {
+exports.update_user_data = asyncHandler(async (req, res) => {
   try {
     const { nickname } = req.params;
     let userChanges = req.body;
@@ -65,7 +64,7 @@ exports.actualizar_datos_usuario = asyncHandler(async (req, res, next) => {
   }
 });
 
-exports.mostrar_carrito_usuario = asyncHandler(async (req, res, next) => {
+exports.get_user_shopping_cart = asyncHandler(async (req, res) => {
   const { id } = req.params;
   let userShoppingCart = await getUserShoppingCart(id);
   res.status(200).send(userShoppingCart);

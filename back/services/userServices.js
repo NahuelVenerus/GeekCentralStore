@@ -46,10 +46,8 @@ exports.updateUserData = async (userChanges, nickname) => {
         nickname: nickname,
       },
       returning: true,
-    }).then(([affectedRows, updated_user]) => {
-      return updated_user[0];
     });
-    return updatedUser;
+    return updatedUser[1][0];
   } catch (error) {
     throw Error(error);
   }

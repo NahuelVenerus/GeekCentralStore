@@ -1,8 +1,8 @@
 const asyncHandler = require("express-async-handler");
 const { searchUser } = require("../services/userServices");
-const { createCart } = require("../services/carritoServices");
+const { createCart } = require("../services/cartServices");
 
-exports.asignar_carrito_a_usuario = asyncHandler(async (req, res) => {
+exports.set_user_cart = asyncHandler(async (req, res) => {
   const { email } = req.body;
   const searchedUser = await searchUser(email);
   const newCart = await createCart(searchedUser);

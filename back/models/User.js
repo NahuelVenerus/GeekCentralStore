@@ -3,26 +3,26 @@ const bc = require("bcrypt");
 const db = require("../config/db/index");
 
 class User extends S.Model {
-  createHash(contrasenia, salt) {
-    return bc.hash(contrasenia, salt);
+  createHash(password, salt) {
+    return bc.hash(password, salt);
   }
-  validatePassword(contrasenia) {
-    return this.createHash(contrasenia, this.salt).then(
-      (newhash) => newhash === this.contrasenia
+  validatePassword(password) {
+    return this.createHash(password, this.salt).then(
+      (newhash) => newhash === this.password
     );
   }
 }
 
 User.init(
   {
-    nombre: { type: S.STRING, require: true },
+    name: { type: S.STRING, require: true },
     nickname: { type: S.STRING, require: true },
-    apellido: { type: S.STRING, require: true },
-    direccion: { type: S.STRING, require: true },
-    codigo_postal: { type: S.INTEGER, require: true },
-    ciudad: { type: S.STRING, require: true },
+    lastname: { type: S.STRING, require: true },
+    address: { type: S.STRING, require: true },
+    zip_code: { type: S.INTEGER, require: true },
+    city: { type: S.STRING, require: true },
     email: { type: S.STRING, require: true },
-    contrasenia: { type: S.STRING, require: true },
+    password: { type: S.STRING, require: true },
     salt: { type: S.STRING },
   },
   {
@@ -35,8 +35,8 @@ User.addHook("beforeCreate", (user) => {
   const salt = bc.genSaltSync();
   user.salt = salt;
   return user
-    .createHash(user.contrasenia, user.salt)
-    .then((result) => (user.contrasenia = result))
+    .createHash(user.password, user.salt)
+    .then((result) => (user.password = result))
     .catch((err) => console.log(err));
 });
 

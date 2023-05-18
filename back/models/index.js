@@ -1,16 +1,16 @@
 const User = require("./User");
 const Product = require("./Product");
-const Carrito = require("./Carrito");
-const ProductCarrito = require("./ProductoCarrito");
-const Pedido = require("./Pedido");
+const ShoppingCart = require("./shoppingCart");
+const CartProduct = require("./CartProduct");
+const Order = require("./Order");
 
-User.hasMany(Carrito, { as: "carritos" });
-Carrito.belongsTo(User, { as: "user" });
-Carrito.hasMany(ProductCarrito, { as: "producto" });
-ProductCarrito.belongsTo(Carrito, { as: "carrito" });
-ProductCarrito.belongsTo(Product, { as: "producto" });
+User.hasMany(ShoppingCart, { as: "shopping_cart" });
+ShoppingCart.belongsTo(User, { as: "user" });
+ShoppingCart.hasMany(CartProduct, { as: "product" });
+CartProduct.belongsTo(ShoppingCart, { as: "shopping_cart" });
+CartProduct.belongsTo(Product, { as: "product" });
 
-Pedido.belongsTo(User, { as: "user" });
-Pedido.belongsTo(Carrito, { as: "carrito" });
+Order.belongsTo(User, { as: "user" });
+Order.belongsTo(ShoppingCart, { as: "shopping_cart" });
 
-module.exports = { User, Product, Carrito, ProductCarrito, Pedido };
+module.exports = { User, Product, ShoppingCart, CartProduct, Order };
