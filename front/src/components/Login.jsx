@@ -8,7 +8,7 @@ import useInput from "../hooks/useInput";
 
 function Login() {
   const nickname = useInput();
-  const contrasenia = useInput();
+  const password = useInput();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -19,7 +19,7 @@ function Login() {
         `${BASE_ROUTE}/api/users/login`,
         {
           nickname: nickname.value,
-          contrasenia: contrasenia.value,
+          password: password.value,
         },
         { withCredentials: true }
       )
@@ -42,7 +42,7 @@ function Login() {
 
       <label>
         Contraseña
-        <input {...contrasenia} type="password" />
+        <input {...password} type="password" />
       </label>
 
       <br />

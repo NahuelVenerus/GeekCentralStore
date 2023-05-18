@@ -6,12 +6,12 @@ export const setLogOut = createAction("LOG_OUT");
 const initialState = {
   id: null,
   nickname: null,
-  apellido: null,
-  direccion: null,
-  codigoPostal: null,
-  ciudad: null,
+  lastName: null,
+  direction: null,
+  postalCode: null,
+  city: null,
   email: null,
-  contrasenia: null,
+  password: null,
 };
 
 export const userReducer = createReducer(initialState, {
