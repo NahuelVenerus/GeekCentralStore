@@ -21,7 +21,7 @@ function App() {
       .get(`${BASE_ROUTE}/api/users/me`, { withCredentials: true })
       .then((resp) => dispatch(setUser(resp.data)))
       .catch((error) => console.error(error));
-  });
+  }, []);
 
   return (
     <div className="App">

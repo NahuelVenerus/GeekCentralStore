@@ -1,6 +1,6 @@
 const S = require("sequelize");
-const db = require("../db/index");
 const bc = require("bcrypt");
+const db = require("../config/db/index");
 
 class User extends S.Model {
   createHash(contrasenia, salt) {
