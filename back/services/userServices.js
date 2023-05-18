@@ -38,3 +38,19 @@ exports.generateCookie = async (payload) => {
     throw Error(error);
   }
 };
+
+exports.updateUserData = async (userChanges, nickname) => {
+  try {
+    let updatedUser = await Users.update(userChanges, {
+      where: {
+        nickname: nickname,
+      },
+      returning: true,
+    }).then(([affectedRows, updated_user]) => {
+      return updated_user[0];
+    });
+    return updatedUser;
+  } catch (error) {
+    throw Error(error);
+  }
+};
