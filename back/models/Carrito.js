@@ -1,5 +1,5 @@
 const Sequelize = require("sequelize");
-const db = require("../db");
+const db = require("../config/db/index");
 
 class Carrito extends Sequelize.Model {}
 

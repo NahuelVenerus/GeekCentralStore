@@ -1,38 +1,46 @@
 const asyncHandler = require("express-async-handler");
-const Users = require("../models/User");
-const { generateToken } = require("../config/token");
-const { Carrito } = require("../models");
+const {
+  createUser,
+  generateCookie,
+  searchUser,
+  validateUserPassword,
+} = require("../services/userServices");
 
 exports.registrar_usuario = asyncHandler(async (req, res, next) => {
-  Users.findOne({ where: { nickname: req.body.nickname } }).then((user) => {
+  try {
+    const { nickname } = req.body;
+    let user = await searchUser(nickname);
     if (user) {
-      alert("el usuario ya existe");
-      res.sendStatus(400);
+      res.status(400).send("user already exist");
     } else {
-      Users.create(req.body).then((user) => res.status(201).send(user));
+      let user_data = req.body;
+      let newUser = await createUser(user_data);
+      res.status(200).send(newUser);
     }
-  });
+  } catch (error) {
+    next(error);
+  }
 });
 
 exports.logear_usuario = asyncHandler(async (req, res, next) => {
-  const { nickname, contrasenia } = req.body;
-  Users.findOne({ where: { nickname } }).then((user) => {
-    if (!user) return res.sendStatus(401);
-    user.validatePassword(contrasenia).then((isValid) => {
-      if (!isValid) return res.sendStatus(401);
+  try {
+    let { nickname } = req.body;
+    let user = await searchUser(nickname);
 
-      const payload = {
-        email: user.email,
-        nombre: user.nombre,
-      };
+    let validatedUser = await validateUserPassword(user);
+    const payload = {
+      email: validatedUser.email,
+      user_name: validatedUser.user_name,
+    };
 
-      const token = generateToken(payload);
+    let userCookie = await generateCookie(payload);
 
-      res.cookie("token", token);
+    res.cookie("token", userCookie);
 
-      res.send(payload);
-    });
-  });
+    res.status(200).send(payload);
+  } catch (error) {
+    next(error);
+  }
 });
 
 exports.deslogear_usuario = asyncHandler(async (req, res, next) => {
