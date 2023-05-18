@@ -25,7 +25,16 @@ function Navbar() {
   return (
     <nav>
       <div>
-        {!user ? (
+        {user ? (
+          <div>
+            <Link to="/logout">
+              <button onClick={handleLogOut}>Logout</button>
+            </Link>
+            <Link to="/carrito">
+              <button>Carrito</button>
+            </Link>
+          </div>
+        ) : (
           <div>
             <Link to="/">
               <button>Home</button>
@@ -35,15 +44,6 @@ function Navbar() {
             </Link>
             <Link to="/signup">
               <button>Signup</button>
-            </Link>
-          </div>
-        ) : (
-          <div>
-            <Link to="/logout">
-              <button onClick={handleLogOut}>Logout</button>
-            </Link>
-            <Link to="/carrito">
-              <button>Carrito</button>
             </Link>
           </div>
         )}
