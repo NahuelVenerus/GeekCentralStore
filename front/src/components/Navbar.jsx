@@ -27,7 +27,7 @@ function Navbar() {
   return (
     <nav>
       <div>
-        {user.nombre ? (
+        {user.nickname ? (
           <div>
             <Link to="/logout">
               <button onClick={handleLogOut}>Logout</button>
