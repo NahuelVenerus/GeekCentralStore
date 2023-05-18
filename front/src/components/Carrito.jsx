@@ -1,19 +1,19 @@
 import React from "react";
-import axios from "axios";
-import { Carousel } from "react-bootstrap";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/swiper-bundle.min.css";
 import { fakeData } from "../utils/fakeData";
-import CarouselCard from "./CarouselCard";
+import CarritoCard from "../commons/CarritoCard";
 
-function Carrito() {
-  const productos = [...fakeData];
+export default function Carrito() {
+  const products = fakeData;
 
   return (
-    <Carousel>
-      {productos.map((p) => {
-        <CarouselCard producto={p} />;
-      })}
-    </Carousel>
+    <Swiper slidesPerView={3} spaceBetween={20}>
+      {products.map((product) => (
+        <SwiperSlide key={product.id}>
+          <CarritoCard product={product} />
+        </SwiperSlide>
+      ))}
+    </Swiper>
   );
 }
-
-export default Carrito;
