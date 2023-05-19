@@ -18,7 +18,7 @@ const Card = ({ name, price, image, id }) => {
           <div className="card-body">
             <h5 className="card-text">${price}</h5>
             <h5 className="card-text">{name}</h5>
-            <button className="btn btn-info">Comprar</button>
+            <button className="btn btn-info">Agregar Carrito</button>
           </div>
         </div>
       </Link>

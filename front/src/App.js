@@ -10,17 +10,20 @@ import SignUp from "./components/SignUp";
 import Footer from "./commons/Footer";
 import axios from "axios";
 import { setUser } from "./state/user";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ProductDetail from "./components/ProductDetail.jsx";
 
 function App() {
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
 
   useEffect(() => {
-    axios
-      .get(`${BASE_ROUTE}/api/users/me`, { withCredentials: true })
-      .then((resp) => dispatch(setUser(resp.data)))
-      .catch((error) => console.error(error));
+    if (user.nickname) {
+      axios
+        .get(`${BASE_ROUTE}/api/users/me`, { withCredentials: true })
+        .then((resp) => dispatch(setUser(resp.data)))
+        .catch((error) => console.error(error));
+    }
   }, []);
 
   return (

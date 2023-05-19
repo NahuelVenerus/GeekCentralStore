@@ -87,7 +87,7 @@ function SignUp() {
 
       <label>
         Email
-        <input {...email} type="text" />
+        <input {...email} type="email" />
       </label>
 
       <br />
