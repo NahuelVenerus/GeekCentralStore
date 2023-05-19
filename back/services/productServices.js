@@ -26,3 +26,26 @@ exports.getAllProducts = async () => {
     throw Error(error);
   }
 };
+
+exports.deleteProduct = async (id) => {
+  try {
+    await Product.destroy({
+      where: { id: id },
+      returning: true,
+    });
+  } catch (error) {
+    throw Error(error);
+  }
+};
+
+exports.editProduct = async (product) => {
+  try {
+    const updatedProduct = await Product.update(product, {
+      where: { id: product.id },
+      returning: true,
+    });
+    return updatedProduct[1][0];
+  } catch (error) {
+    throw Error(error);
+  }
+};

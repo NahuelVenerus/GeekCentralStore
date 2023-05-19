@@ -22,7 +22,6 @@ exports.delete_cart_product = async (id) => {
 
 exports.edit_cart_product = async (id, quantity) => {
   try {
-    console.log(id, ",", quantity);
     const updatedCartProduct = await CartProduct.update(
       { quantity: quantity },
       {
