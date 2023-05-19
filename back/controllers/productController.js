@@ -3,6 +3,8 @@ const {
   getProduct,
   getAllProducts,
   addNewProduct,
+  deleteProduct,
+  editProduct,
 } = require("../services/productServices");
 
 exports.get_all_products = asyncHandler(async (req, res) => {
@@ -32,4 +34,16 @@ exports.add_new_product = asyncHandler(async (req, res) => {
   } catch (error) {
     throw Error(error);
   }
+});
+
+exports.delete_product = asyncHandler(async (req, res) => {
+  const { id } = req.body;
+  await deleteProduct(id);
+  res.sendStatus(202);
+});
+
+exports.edit_product = asyncHandler(async (req, res) => {
+  const editedProduct = req.body;
+  const updatedProduct = await editProduct(editedProduct);
+  res.status(200).send(updatedProduct);
 });
