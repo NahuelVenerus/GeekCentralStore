@@ -13,6 +13,7 @@ exports.searchUser = async (nickname) => {
 exports.createUser = async (userData) => {
   try {
     let newUser = await Users.create(userData);
+    console.log("new User => ", newUser);
     return newUser;
   } catch (error) {
     throw Error(error);
@@ -48,6 +49,25 @@ exports.updateUserData = async (userChanges, nickname) => {
       returning: true,
     });
     return updatedUser[1][0];
+  } catch (error) {
+    throw Error(error);
+  }
+};
+
+exports.getAllUsers = async () => {
+  try {
+    let registeredUsers = await Users.findAll();
+    return registeredUsers;
+  } catch (error) {
+    throw Error(error);
+  }
+};
+
+exports.deleteUserAccount = async (nickname) => {
+  try {
+    await Users.destroy({
+      where: { nickname: nickname },
+    });
   } catch (error) {
     throw Error(error);
   }

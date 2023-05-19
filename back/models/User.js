@@ -16,13 +16,14 @@ class User extends S.Model {
 User.init(
   {
     name: { type: S.STRING, require: true },
-    nickname: { type: S.STRING, require: true },
+    nickname: { type: S.STRING, require: true, unique: true },
     lastname: { type: S.STRING, require: true },
     address: { type: S.STRING, require: true },
     zip_code: { type: S.INTEGER, require: true },
     city: { type: S.STRING, require: true },
     email: { type: S.STRING, require: true },
     password: { type: S.STRING, require: true },
+    is_admin: { type: S.BOOLEAN, defaultValue: false },
     salt: { type: S.STRING },
   },
   {
