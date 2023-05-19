@@ -1,14 +1,23 @@
 const asyncHandler = require("express-async-handler");
-const { Order, User } = require("../models");
+const { getAllOrders, addNewOrder } = require("../services/orderServices");
 
 exports.get_all_orders = asyncHandler(async (req, res) => {
-  User.findOne({ where: { nickname: req.body.nickname } }).then((user) => {
-    Order.findAll({ where: { userId: user.dataValues.id } }).then((orders) =>
-      res.status(200).send(orders)
-    );
-  });
+  try {
+    const { id } = req.body;
+    const orders = await getAllOrders(id);
+    res.status(200).send(orders);
+  } catch (error) {
+    throw Error(error);
+  }
 });
 
 exports.add_new_order = asyncHandler(async (req, res) => {
-  Order.create(req.body).then((order) => res.status(201).send(order));
+  try {
+    const createdOrder = req.body;
+    const newOrder = await addNewOrder(createdOrder);
+    console.log("new order", newOrder);
+    res.status(201).send(newOrder);
+  } catch (error) {
+    throw Error(error);
+  }
 });
