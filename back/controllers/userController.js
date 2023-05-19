@@ -5,6 +5,8 @@ const {
   generateCookie,
   createUser,
   updateUserData,
+  getAllUsers,
+  deleteUserAccount,
 } = require("../services/userServices");
 const { getUserShoppingCart } = require("../services/cartServices");
 
@@ -68,4 +70,15 @@ exports.get_user_shopping_cart = asyncHandler(async (req, res) => {
   const { id } = req.params;
   let userShoppingCart = await getUserShoppingCart(id);
   res.status(200).send(userShoppingCart);
+});
+
+exports.see_all_users = asyncHandler(async (req, res) => {
+  let signedUpUsers = await getAllUsers();
+  res.status(200).send(signedUpUsers);
+});
+
+exports.delete_user_account = asyncHandler(async (req, res) => {
+  const { nickname } = req.params;
+  await deleteUserAccount(nickname);
+  res.sendStatus(200);
 });
