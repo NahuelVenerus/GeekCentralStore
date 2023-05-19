@@ -31,7 +31,6 @@ exports.deleteProduct = async (id) => {
   try {
     await Product.destroy({
       where: { id: id },
-      returning: true,
     });
   } catch (error) {
     throw Error(error);

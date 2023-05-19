@@ -21,7 +21,7 @@ User.init(
     address: { type: S.STRING, require: true },
     zip_code: { type: S.INTEGER, require: true },
     city: { type: S.STRING, require: true },
-    email: { type: S.STRING, require: true },
+    email: { type: S.STRING, require: true, validate: { isEmail: true } },
     password: { type: S.STRING, require: true },
     is_admin: { type: S.BOOLEAN, defaultValue: false },
     salt: { type: S.STRING },
