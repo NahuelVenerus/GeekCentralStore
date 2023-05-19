@@ -10,7 +10,7 @@ const ProductDetail = () => {
       <div className="row g-0">
         <div className="col-md-4">
           <img
-            style={{ height: "300px" }}
+            style={{ height: "200px" }}
             src={producto.imagen[0].url}
             className="img-fluid rounded-start"
             alt="..."

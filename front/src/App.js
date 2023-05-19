@@ -3,7 +3,7 @@ import { React, useEffect } from "react";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import Home from "./components/Home";
+import Home from "./components/home/Home";
 import Carrito from "./components/Carrito";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
@@ -24,7 +24,8 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
+    <div className="App" style={{ backgroundColor: "black" }}>
+      //* este es el color que debo modificar del fondo
       <Navbar />
       <Routes>
         <Route path="/signup" element={<SignUp />} />

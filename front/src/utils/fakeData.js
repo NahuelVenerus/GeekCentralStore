@@ -10,6 +10,7 @@ export const fakeData = [
     precio: 3000,
     descripcion: "Descripcion del producto",
     valoracion: "agregar valoracion",
+    cantidad: 1,
   },
   {
     nombre: "Mate 3d Hongo ",
@@ -22,6 +23,7 @@ export const fakeData = [
     precio: 2900,
     descripcion: "Descripcion del producto",
     valoracion: "agregar valoracion",
+    cantidad: 1,
   },
   {
     nombre: "Gorra Dragon Ball",
@@ -34,6 +36,7 @@ export const fakeData = [
     precio: 3000,
     descripcion: "Descripcion del producto",
     valoracion: "agregar valoracion",
+    cantidad: 1,
   },
   {
     nombre: "Remera Mario Bross",
@@ -46,6 +49,7 @@ export const fakeData = [
     precio: 3800,
     descripcion: "Descripcion del producto",
     valoracion: "agregar valoracion",
+    cantidad: 1,
   },
 
   {
@@ -59,5 +63,6 @@ export const fakeData = [
     precio: 4000,
     descripcion: "Descripcion del producto",
     valoracion: "agregar valoracion",
+    cantidad: 1,
   },
 ];
