@@ -1,46 +1,36 @@
 const asyncHandler = require("express-async-handler");
-const { User, ShoppingCart, CartProduct, Product } = require("../models");
+const { searchUser } = require("../services/userServices");
+const { getProduct } = require("../services/productServices");
+const { createCart } = require("../services/cartServices");
+const {
+  add_new_cart_product,
+  edit_cart_product,
+  delete_cart_product,
+} = require("../services/cartProductServices");
 
 exports.add_new_cart_product = asyncHandler(async (req, res) => {
-  const { email, quantity, name } = req.body;
-  const user = User.findOne({ where: { email: email } });
-  const cartProduct = CartProduct.create({
-    quantity: quantity,
-  });
-  const cart = ShoppingCart.create();
-  const producto = Product.findOne({ where: { name: name } });
+  const { nickname, id, quantity } = req.body;
+  const newCartProduct = await add_new_cart_product(quantity);
 
-  user
-    .then((user) => {
-      cartProduct
-        .then((product) => {
-          cart
-            .then((newCart) => {
-              producto.then((foundProduct) => {
-                newCart.setUser(user);
-                product.setProduct(foundProduct);
-                product.setShopping_cart(newCart);
-                res.status(201).send(product);
-              });
-            })
-            .catch((err) => console.log(err));
-        })
-        .catch((err) => console.log(err));
-    })
-    .catch((err) => console.log(err));
+  const foundUser = await searchUser(nickname);
+  const foundProduct = await getProduct(id);
+  const newCart = await createCart();
+
+  newCart.setUser(foundUser);
+  newCartProduct.setProduct(foundProduct);
+  newCartProduct.setShopping_cart(newCart);
+
+  res.status(201).send(newCartProduct);
 });
 
 exports.delete_cart_product = asyncHandler(async (req, res) => {
-  CartProduct.destroy({ where: { id: req.body.id }, returning: true }).then(
-    () => res.sendStatus(202)
-  );
+  const { id } = req.body;
+  await delete_cart_product(id);
+  res.sendStatus(202);
 });
 
 exports.edit_cart_product = asyncHandler(async (req, res) => {
-  CartProduct.update(req.body, {
-    where: { id: req.body.id },
-    returning: true,
-  }).then(([affectedRows, cart]) => {
-    res.status(200).send(cart[0]);
-  });
+  const { id, quantity } = req.body;
+  const updatedCartProduct = await edit_cart_product(id, quantity);
+  res.status(200).send(updatedCartProduct);
 });
