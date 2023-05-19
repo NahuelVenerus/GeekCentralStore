@@ -8,7 +8,7 @@ const {
   getAllUsers,
   deleteUserAccount,
 } = require("../services/userServices");
-const { getUserShoppingCart } = require("../services/cartServices");
+const { getUserShoppingCart } = require("../services/shoppingCartServices");
 
 exports.signup_user = asyncHandler(async (req, res, next) => {
   try {
@@ -50,8 +50,12 @@ exports.login_user = asyncHandler(async (req, res, next) => {
 });
 
 exports.logout_user = asyncHandler(async (req, res) => {
-  res.clearCookie("token");
-  res.sendStatus(204);
+  try {
+    res.clearCookie("token");
+    res.sendStatus(204);
+  } catch (error) {
+    throw Error(error);
+  }
 });
 
 exports.update_user_data = asyncHandler(async (req, res) => {
@@ -67,18 +71,30 @@ exports.update_user_data = asyncHandler(async (req, res) => {
 });
 
 exports.get_user_shopping_cart = asyncHandler(async (req, res) => {
-  const { id } = req.params;
-  let userShoppingCart = await getUserShoppingCart(id);
-  res.status(200).send(userShoppingCart);
+  try {
+    const { id } = req.params;
+    let userShoppingCart = await getUserShoppingCart(id);
+    res.status(200).send(userShoppingCart);
+  } catch (error) {
+    throw Error(error);
+  }
 });
 
 exports.see_all_users = asyncHandler(async (req, res) => {
-  let signedUpUsers = await getAllUsers();
-  res.status(200).send(signedUpUsers);
+  try {
+    let signedUpUsers = await getAllUsers();
+    res.status(200).send(signedUpUsers);
+  } catch (error) {
+    throw Error(error);
+  }
 });
 
 exports.delete_user_account = asyncHandler(async (req, res) => {
-  const { nickname } = req.params;
-  await deleteUserAccount(nickname);
-  res.sendStatus(200);
+  try {
+    const { nickname } = req.params;
+    await deleteUserAccount(nickname);
+    res.sendStatus(200);
+  } catch (error) {
+    throw Error(error);
+  }
 });

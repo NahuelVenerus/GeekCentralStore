@@ -37,13 +37,21 @@ exports.add_new_product = asyncHandler(async (req, res) => {
 });
 
 exports.delete_product = asyncHandler(async (req, res) => {
-  const { id } = req.body;
-  await deleteProduct(id);
-  res.sendStatus(202);
+  try {
+    const { id } = req.body;
+    await deleteProduct(id);
+    res.sendStatus(202);
+  } catch (error) {
+    throw Error(error);
+  }
 });
 
 exports.edit_product = asyncHandler(async (req, res) => {
-  const editedProduct = req.body;
-  const updatedProduct = await editProduct(editedProduct);
-  res.status(200).send(updatedProduct);
+  try {
+    const editedProduct = req.body;
+    const updatedProduct = await editProduct(editedProduct);
+    res.status(200).send(updatedProduct);
+  } catch (error) {
+    throw Error(error);
+  }
 });

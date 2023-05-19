@@ -1,10 +1,11 @@
 const asyncHandler = require("express-async-handler");
-const { searchUser } = require("../services/userServices");
-const { createCart } = require("../services/cartServices");
+const { getAllCarts } = require("../services/shoppingCartServices");
 
-exports.set_user_cart = asyncHandler(async (req, res) => {
-  const { email } = req.body;
-  const searchedUser = await searchUser(email);
-  const newCart = await createCart(searchedUser);
-  res.status(201).send(newCart);
+exports.get_all_carts = asyncHandler(async (req, res) => {
+  try {
+    const carts = await getAllCarts();
+    res.status(200).send(carts);
+  } catch (error) {
+    throw Error(error);
+  }
 });
