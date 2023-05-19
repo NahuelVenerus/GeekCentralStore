@@ -11,8 +11,6 @@ function Navbar() {
   const navigate = useNavigate();
   const user = useSelector((state) => state.user);
 
-  console.log(user.nombre);
-
   const handleLogOut = (e) => {
     e.preventDefault();
     axios
@@ -29,11 +27,14 @@ function Navbar() {
       <div>
         {user.nickname ? (
           <div>
-            <Link to="/logout">
-              <button onClick={handleLogOut}>Logout</button>
+            <Link to="/">
+              <button>Home</button>
             </Link>
             <Link to="/shopping-cart">
               <button>Carrito</button>
+            </Link>
+            <Link to="/logout">
+              <button onClick={handleLogOut}>Logout</button>
             </Link>
           </div>
         ) : (
