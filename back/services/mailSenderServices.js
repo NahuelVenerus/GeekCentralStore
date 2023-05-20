@@ -1,8 +1,8 @@
 const nodemailer = require("nodemailer");
 require("dotenv").config();
 
-const GMAIL_USER = "lageekcentralstore@gmail.com";
-const GMAIL_PASS = "geekCentral123";
+const USER = process.env.YAHOO_USER;
+const PASS = process.env.YAHOO_PASS;
 
 exports.getTransporter = () => {
   try {
@@ -10,8 +10,8 @@ exports.getTransporter = () => {
       host: "smtp.mail.yahoo.com",
       port: 587,
       auth: {
-        user: "lageekcentralstore@yahoo.com",
-        pass: "geekCentral123",
+        user: USER,
+        pass: PASS,
       },
     });
     return transporter;
@@ -23,7 +23,7 @@ exports.getTransporter = () => {
 exports.getMailOptions = (userEmail) => {
   try {
     const mailOptions = {
-      from: "lageekcentralstore@yahoo.com",
+      from: USER,
       to: userEmail,
       subject: "Asunto del correo electrónico",
       html: "<h1>¡Hola!</h1><p>Este es un correo electrónico con contenido HTML.</p>",
