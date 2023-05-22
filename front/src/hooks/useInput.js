@@ -6,7 +6,7 @@ const useInput = () => {
   const onChange = (e) => {
     setValue(e.target.value);
   };
-  return { onChange, value };
+  return { onChange, setValue, value };
 };
 
 export default useInput;
