@@ -12,6 +12,7 @@ const initialState = {
   city: null,
   email: null,
   password: null,
+  isAdmin: false,
 };
 
 export const userReducer = createReducer(initialState, {

@@ -5,13 +5,12 @@ import axios from "axios";
 import { BASE_ROUTE } from "../rutas";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { setInitialState } from "../state/productList";
 
 function Navbar() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((state) => state.user);
-
-  console.log(user.nombre);
 
   const handleLogOut = (e) => {
     e.preventDefault();
@@ -24,32 +23,35 @@ function Navbar() {
       .catch((error) => console.error(error));
   };
 
+  const handleHome = () => {
+    dispatch(setInitialState());
+  };
+
   return (
     <nav>
-      <div>
-        {user.nickname ? (
-          <div>
-            <Link to="/logout">
-              <button onClick={handleLogOut}>Logout</button>
-            </Link>
-            <Link to="/shopping-cart">
-              <button>Carrito</button>
-            </Link>
-          </div>
-        ) : (
-          <div>
-            <Link to="/">
-              <button>Home</button>
-            </Link>
-            <Link to="/login">
-              <button>Login</button>
-            </Link>
-            <Link to="/signup">
-              <button>Signup</button>
-            </Link>
-          </div>
-        )}
-      </div>
+      <Link to="/">
+        <button onClick={handleHome}>Home</button>
+      </Link>
+      {user.nickname ? (
+        <div>
+          <Link to="/shopping-cart">
+            <button>Carrito</button>
+          </Link>
+          <Link to="/logout">
+            <button onClick={handleLogOut}>Logout</button>
+          </Link>
+        </div>
+      ) : (
+        <div>
+          <Link to="/login">
+            <button>Login</button>
+          </Link>
+          <Link to="/signup">
+            <button>Signup</button>
+          </Link>
+        </div>
+      )}
+      {/* <Searcher /> */}
     </nav>
   );
 }

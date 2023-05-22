@@ -5,12 +5,23 @@ const {
   addNewProduct,
   deleteProduct,
   editProduct,
+  getProductsByName,
 } = require("../services/productServices");
 
 exports.get_all_products = asyncHandler(async (req, res) => {
   try {
-    let productsOnStock = await getAllProducts();
+    let productsOnStock = await getAllProducts(name);
     res.status(200).send(productsOnStock);
+  } catch (error) {
+    throw Error(error);
+  }
+});
+
+exports.get_product_by_name = asyncHandler(async (req, res) => {
+  try {
+    const { name } = req.params;
+    const results = await getProductsByName(name);
+    res.status(200).send(results);
   } catch (error) {
     throw Error(error);
   }
