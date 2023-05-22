@@ -1,6 +1,7 @@
 const asyncHandler = require("express-async-handler");
 const { getAllOrders, addNewOrder } = require("../services/orderServices");
 const { sendEmailToUser } = require("../services/mailSenderServices");
+const { searchUser } = require("../services/userServices");
 
 exports.get_all_orders = asyncHandler(async (req, res) => {
   try {
@@ -18,7 +19,8 @@ exports.add_new_order = asyncHandler(async (req, res) => {
     const newOrder = await addNewOrder(createdOrder);
     // const user = searchUser();
     console.log("estoy enviando mail");
-    sendEmailToUser("nahuelvenerus@gmail.com");
+    const user = await searchUser(req.body.nickname);
+    sendEmailToUser(user.email);
     res.status(201).send(newOrder);
   } catch (error) {
     throw Error(error);
