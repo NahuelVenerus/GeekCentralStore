@@ -1,3 +1,4 @@
+const { Op } = require("sequelize");
 const { Product } = require("../models");
 
 exports.addNewProduct = async (productData) => {
@@ -22,6 +23,21 @@ exports.getAllProducts = async () => {
   try {
     let productsOnStock = await Product.findAll();
     return productsOnStock;
+  } catch (error) {
+    throw Error(error);
+  }
+};
+
+exports.getProductsByName = async (name) => {
+  try {
+    const searchedProducts = await Product.findAll({
+      where: {
+        name: {
+          [Op.iLike]: `%${name}%`,
+        },
+      },
+    });
+    return searchedProducts;
   } catch (error) {
     throw Error(error);
   }
