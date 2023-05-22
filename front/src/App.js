@@ -18,12 +18,10 @@ function App() {
   const user = useSelector((state) => state.user);
 
   useEffect(() => {
-    if (user.nickname) {
-      axios
-        .get(`${BASE_ROUTE}/api/users/me`, { withCredentials: true })
-        .then((resp) => dispatch(setUser(resp.data)))
-        .catch((error) => console.error(error));
-    }
+    axios
+      .get(`${BASE_ROUTE}/api/users/me`, { withCredentials: true })
+      .then((resp) => dispatch(setUser(resp.data)))
+      .catch((error) => console.error(error));
   }, []);
 
   return (
