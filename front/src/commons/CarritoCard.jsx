@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { setAdd, setRemove } from "../state/shoppingCart";
+import { setAdd } from "../state/shoppingCart";
 
 export default function CarritoCard({ product }) {
   const dispatch = useDispatch();
@@ -9,10 +9,10 @@ export default function CarritoCard({ product }) {
     dispatch(setAdd(product.id));
   };
 
-  const handlerRemove = (e) => {
+  /*   const handlerRemove = (e) => {
     e.preventDefault();
     dispatch(setRemove(product.id));
-  };
+  }; */
 
   return (
     <div>
@@ -20,9 +20,9 @@ export default function CarritoCard({ product }) {
         <img src={product.image[0].url} alt={product.name} />
         <h3>{product.name}</h3>
         <p>${product.price}</p>
-        <button className="btn btn-danger" onClick={handlerRemove}>
+        {/*     <button className="btn btn-danger" onClick={handlerRemove}>
           -
-        </button>
+        </button> */}
         <span>1</span>
         <button className="btn btn-danger" onClick={handlerAdd}>
           +
