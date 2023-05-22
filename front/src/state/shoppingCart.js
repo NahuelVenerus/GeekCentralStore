@@ -6,21 +6,11 @@ export const setAdd = createAction("AGREGAR_PRODUCTO");
 
 const initialState = fakeData;
 
-/* {
-  name: null,
-  image: null,
-  price: null,
-  description: null,
-  value: null,
-  quantity: null,
-  shoppingCart: [], //*Agrego carrito provicional
-}; */
-
 export const shoppingCartReducer = createReducer(initialState, {
   [setAdd]: (state, action) => {
     const products = fakeData;
     const productCart = products.find(
-      (product) => product.id == action.payload
+      (product) => product.id === action.payload
     );
     console.log(productCart);
 
