@@ -1,10 +1,10 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation } from "swiper";
 import "swiper/swiper-bundle.min.css";
-// import { fakeData } from "../utils/fakeData";
-// import CarritoCard from "../commons/CarritoCard";
-import { useSelector } from "react-redux";
+import { BASE_ROUTE } from "../rutas";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
 
 SwiperCore.use([Navigation]);
 
@@ -15,6 +15,15 @@ export default function ShoppingCart() {
   console.log(products);
   const navigationPrevRef = useRef(null);
   const navigationNextRef = useRef(null);
+  const dispach = useDispatch();
+
+  useEffect(() => {
+    axios
+      .get(`${BASE_ROUTE}/api/shopping-cart`)
+      .then((res) => console.log(res))
+      .catch((error) => console.log("Hay un error"));
+  }, []);
+
   return (
     <Swiper
       slidesPerView={3}
