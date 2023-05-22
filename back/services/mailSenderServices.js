@@ -1,18 +1,14 @@
 const nodemailer = require("nodemailer");
 require("dotenv").config();
 
-const USER = process.env.YAHOO_USER;
-const PASS = process.env.YAHOO_PASS;
-
 exports.getTransporter = () => {
   try {
     const transporter = nodemailer.createTransport({
-      host: "smtp.mail.yahoo.com",
-      port: 587,
+      host: process.env.MAIL_HOST,
+      port: process.env.MAIL_PORT,
       auth: {
-        user: USER,
-        pass: PASS,
-      },
+        user: process.env.MAIL_USER,
+        pass: process.env.MAIL_PASS,
     });
     return transporter;
   } catch (error) {
@@ -23,10 +19,10 @@ exports.getTransporter = () => {
 exports.getMailOptions = (userEmail) => {
   try {
     const mailOptions = {
-      from: USER,
+      from: process.env.MAIL_USER,
       to: userEmail,
       subject: "Asunto del correo electrónico",
-      html: "<h1>¡Hola!</h1><p>Este es un correo electrónico con contenido HTML.</p>",
+      html: "<h1>¡Hola!</h1><p>Estamos probando de mandar un mail con HTML</p>",
     };
     return mailOptions;
   } catch (error) {
