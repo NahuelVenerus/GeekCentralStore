@@ -1,12 +1,27 @@
+import { useEffect } from "react";
 import Searcher from "../components/Searcher";
+import { BASE_ROUTE } from "../rutas";
 import Card from "./Card";
-// import { fakeData } from "../utils/fakeData";
-import { useSelector } from "react-redux";
-
-// import { useLocation } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
+import { setProductList } from "../state/productList";
 
 const Grid = () => {
   const products = useSelector((state) => state.productList);
+  const dispatch = useDispatch();
+  const fetchProducts = () => {
+    axios
+      .get(`${BASE_ROUTE}/api/products/`)
+      .then((products) => {
+        dispatch(setProductList(products.data));
+      })
+      .catch((err) => console.log(err));
+  };
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
   return (
     <>
       <Searcher />

@@ -11,7 +11,7 @@ export default function CarritoCard({ cartProduct, setDeletedProduct }) {
 
   const fetchProducts = () => {
     axios
-      .get(`${BASE_ROUTE}/api/products/${cartProduct.productId}`)
+      .get(`${BASE_ROUTE}/api/products/${cartProduct.id}`)
       .then((productData) => {
         console.log("productData", productData);
         setProduct(productData.data);

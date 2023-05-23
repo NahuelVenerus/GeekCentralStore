@@ -48,7 +48,10 @@ export default function ShoppingCart() {
         >
           {products.map((p) => (
             <SwiperSlide key={p.id}>
-              <CarritoCard producto={p} setDeletedProduct={setDeletedProduct} />
+              <CarritoCard
+                cartProduct={p}
+                setDeletedProduct={setDeletedProduct}
+              />
             </SwiperSlide>
           ))}
           <div ref={navigationPrevRef} className="swiper-button-prev" />
