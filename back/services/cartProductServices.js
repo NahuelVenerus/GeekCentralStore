@@ -12,7 +12,7 @@ exports.add_new_cart_product = async (quantity) => {
 exports.delete_cart_product = async (id) => {
   try {
     await CartProduct.destroy({
-      where: { id: id },
+      where: { productId: id },
       returning: true,
     });
   } catch (error) {
@@ -20,12 +20,14 @@ exports.delete_cart_product = async (id) => {
   }
 };
 
-exports.edit_cart_product = async (id, quantity) => {
+exports.edit_cart_product = async (cartProductId, newQuantity) => {
   try {
+    console.log("cartproductid", cartProductId);
+    console.log("newQuantity", newQuantity);
     const updatedCartProduct = await CartProduct.update(
-      { quantity: quantity },
+      { quantity: newQuantity },
       {
-        where: { id: id },
+        where: { id: cartProductId },
         returning: true,
       }
     );

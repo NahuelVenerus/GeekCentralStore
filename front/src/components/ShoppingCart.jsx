@@ -3,7 +3,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation } from "swiper";
 import "swiper/swiper-bundle.min.css";
 import CarritoCard from "../commons/CarritoCard";
-import { useDispatch, useSelector } from "react-redux";
 import { BASE_ROUTE } from "../rutas";
 import { setAdd } from "../state/shoppingCart";
 import axios from "axios";
@@ -12,21 +11,18 @@ import { useParams } from "react-router";
 SwiperCore.use([Navigation]);
 
 export default function ShoppingCart() {
-  const dispatch = useDispatch();
-  const products = useSelector((state) => state.shoppingCart);
+  const [products, setProducts] = useState([]);
   const [deletedProduct, setDeletedProduct] = useState({});
   const { nickname } = useParams();
   const navigationPrevRef = useRef(null);
   const navigationNextRef = useRef(null);
-  if (products.product) {
-    console.log("product", products.product);
-  }
 
   const fetchCarts = () => {
     axios
       .get(`${BASE_ROUTE}/api/users/shopping-cart/${nickname}`)
       .then((products) => {
-        dispatch(setAdd(products.data.product));
+        console.log("products", products);
+        setProducts(products.data.cart_product);
       })
       .catch((err) => console.log(err));
   };
