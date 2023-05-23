@@ -1,10 +1,9 @@
 import { useEffect } from "react";
-import Searcher from "../components/Searcher";
 import { BASE_ROUTE } from "../rutas";
-import Card from "./Card";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { setProductList } from "../state/productList";
+import Card from "../commons/card/Card";
 
 const Grid = () => {
   const products = useSelector((state) => state.productList);
