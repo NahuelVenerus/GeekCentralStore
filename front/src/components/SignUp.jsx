@@ -3,6 +3,9 @@ import axios from "axios";
 import { BASE_ROUTE } from "../rutas";
 import useInput from "../hooks/useInput";
 import { useNavigate } from "react-router";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
 
 function SignUp() {
   const name = useInput();
@@ -36,73 +39,135 @@ function SignUp() {
       .catch((error) => console.error(error));
   };
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Nombre
-        <input {...name} type="text" />
-      </label>
+    <div className="container-fluid p-3" style={{ background: "#2B2D42" }}>
+      <Card
+        className="container-fluid p-3 card-form "
+        style={{ width: "50rem" }}
+      >
+        <Form className="container" onSubmit={handleSubmit}>
+          <div className="row">
+            <Form.Group className="mb-3 p-2 col-6" controlId="formBasicEmail">
+              <div className="container">
+                <div className="row">
+                  <Form.Label>Name</Form.Label>
+                  <Form.Control {...name} type="text" placeholder="name" />
+                </div>
+              </div>
+            </Form.Group>
 
-      <br />
-      <br />
+            <Form.Group className="mb-3 p-2 col-6" controlId="formBasicEmail">
+              <Form.Label>Lastname</Form.Label>
+              <Form.Control {...lastName} type="text" placeholder="lastname" />
+            </Form.Group>
 
-      <label>
-        Nickname
-        <input {...nickname} type="text" name="" id="" />
-      </label>
+            <Form.Group className="mb-3 p-2" controlId="formBasicEmail">
+              <Form.Label>Username</Form.Label>
+              <Form.Control {...nickname} type="text" placeholder="username" />
+            </Form.Group>
+            <Form.Group className="mb-3 p-2" controlId="formBasicEmail">
+              <Form.Label>City</Form.Label>
+              <Form.Control {...city} type="text" placeholder="city" />
+            </Form.Group>
+            <Form.Group className="mb-3 p-2 col-8" controlId="formBasicEmail">
+              <Form.Label>Direction</Form.Label>
+              <Form.Control {...address} type="text" placeholder="direction" />
+            </Form.Group>
+            <Form.Group className="mb-3 p-2 col-4" controlId="formBasicEmail">
+              <Form.Label>Zip code</Form.Label>
+              <Form.Control {...zip_code} type="number" placeholder="code" />
+            </Form.Group>
 
-      <br />
-      <br />
+            <Form.Group className="mb-3 p-2" controlId="formBasicEmail">
+              <Form.Label>Email</Form.Label>
+              <Form.Control {...email} type="mail" placeholder="mail" />
+            </Form.Group>
 
-      <label>
-        Apellido
-        <input {...lastName} type="text" />
-      </label>
+            <Form.Group className="mb-3 p-2" controlId="formBasicPassword">
+              <Form.Label>Password</Form.Label>
+              <Form.Control
+                {...password}
+                type="password"
+                placeholder="password"
+              />
+            </Form.Group>
+            <Button
+              className="button-card"
+              style={{ background: "#120910" }}
+              type="submit"
+            >
+              Submit
+            </Button>
+          </div>
+        </Form>
+      </Card>
+    </div>
+    // <form onSubmit={handleSubmit}>
+    //   <label>
+    //     Nombre
+    //     <input {...name} type="text" />
+    //   </label>
 
-      <br />
-      <br />
+    //   <br />
+    //   <br />
 
-      <label>
-        Direccion
-        <input {...address} type="text" />
-      </label>
+    //   <label>
+    //     Nickname
+    //     <input {...nickname} type="text" name="" id="" />
+    //   </label>
 
-      <br />
-      <br />
+    //   <br />
+    //   <br />
 
-      <label>
-        Codigo Postal
-        <input {...zip_code} type="text" />
-      </label>
+    //   <label>
+    //     Apellido
+    //     <input {...lastName} type="text" />
+    //   </label>
 
-      <br />
-      <br />
+    //   <br />
+    //   <br />
 
-      <label>
-        Ciudad
-        <input {...city} type="text" />
-      </label>
+    //   <label>
+    //     Direccion
+    //     <input {...address} type="text" />
+    //   </label>
 
-      <br />
-      <br />
+    //   <br />
+    //   <br />
 
-      <label>
-        Email
-        <input {...email} type="email" />
-      </label>
+    //   <label>
+    //     Codigo Postal
+    //     <input {...zip_code} type="text" />
+    //   </label>
 
-      <br />
-      <br />
+    //   <br />
+    //   <br />
 
-      <label>
-        Contraseña
-        <input {...password} type="password" />
-      </label>
+    //   <label>
+    //     Ciudad
+    //     <input {...city} type="text" />
+    //   </label>
 
-      <br />
-      <br />
+    //   <br />
+    //   <br />
 
-      <input type="submit" />
-    </form>
+    //   <label>
+    //     Email
+    //     <input {...email} type="email" />
+    //   </label>
+
+    //   <br />
+    //   <br />
+
+    //   <label>
+    //     Contraseña
+    //     <input {...password} type="password" />
+    //   </label>
+
+    //   <br />
+    //   <br />
+
+    //   <input type="submit" />
+    // </form>
   );
 }
 
