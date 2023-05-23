@@ -1,4 +1,4 @@
-import Card from "./Card";
+import Card from "./card/Card";
 // import { fakeData } from "../utils/fakeData";
 import { useSelector } from "react-redux";
 

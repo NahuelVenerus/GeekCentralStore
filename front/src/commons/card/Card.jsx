@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { BASE_ROUTE } from "../rutas";
+import { BASE_ROUTE } from "../../rutas";
 import { useSelector } from "react-redux";
 
 const Card = ({ name, price, image, id }) => {
@@ -25,7 +25,7 @@ const Card = ({ name, price, image, id }) => {
   return (
     <div className="col d-flex justify-content-center mb-4">
       <div
-        className="card shadow mb-1 bg-white rounded"
+        className="card pink-shadow mb-1 bg-white rounded"
         style={{ width: "20rem" }}
       >
         <Link style={{ textDecoration: "none" }} to={`/product-detail/${id}`}>

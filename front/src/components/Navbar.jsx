@@ -63,12 +63,12 @@ function Navbar() {
           ) : (
             <div>
               <Link to="/login">
-                <button type="button" className={"btn btn-outline-primary"}>
+                <button type="button" className={"btn btn-outline-danger"}>
                   Login
                 </button>
               </Link>
               <Link to="/signup">
-                <button type="button" className={"btn btn-outline-primary"}>
+                <button type="button" className={"btn btn-outline-danger"}>
                   Signup
                 </button>
               </Link>

@@ -13,6 +13,7 @@ import { setUser } from "./state/user";
 import { useDispatch } from "react-redux";
 import ProductDetail from "./components/ProductDetail.jsx";
 import Searcher from "./components/Searcher";
+// import "./commons/card/card.css";
 
 function App() {
   const dispatch = useDispatch();
