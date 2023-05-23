@@ -7,19 +7,16 @@ import { setProductList } from "../state/productList";
 const Card = ({ name, price, image, id }) => {
   const { nickname, is_admin } = useSelector((state) => state.user);
   const dispatch = useDispatch();
+
   const handlerAdd = (e) => {
     e.preventDefault();
-    console.log("ID", id, "NICKNAME", nickname);
-    console.log(`${BASE_ROUTE}/api/cart-products/add`);
     axios
       .post(`${BASE_ROUTE}/api/cart-products/add`, {
         id: id,
         nickname: nickname,
       })
-      .then((res) => console.log("Me TRAE PRODUCTOS", res.data))
-      .catch((error) => {
-        console.log("error axios front");
-      });
+      .then((cartProduct) => console.log("Me TRAE PRODUCTOS", cartProduct.data))
+      .catch((err) => console.log(err));
   };
 
   const handleDelete = () => {
