@@ -1,4 +1,3 @@
-import Searcher from "../components/Searcher";
 import Card from "./Card";
 // import { fakeData } from "../utils/fakeData";
 import { useSelector } from "react-redux";
@@ -9,7 +8,6 @@ const Grid = () => {
   const products = useSelector((state) => state.productList);
   return (
     <>
-      <Searcher />
       <div className="container text-center">
         <div className="row">
           {products.length > 0 ? (
