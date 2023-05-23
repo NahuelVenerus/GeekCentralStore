@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation } from "swiper";
 import "swiper/swiper-bundle.min.css";
@@ -8,6 +8,9 @@ import { BASE_ROUTE } from "../rutas";
 import { setAdd } from "../state/shoppingCart";
 import axios from "axios";
 import { useParams } from "react-router";
+import { BASE_ROUTE } from "../rutas";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
 
 SwiperCore.use([Navigation]);
 
