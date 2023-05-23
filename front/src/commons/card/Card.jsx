@@ -31,7 +31,7 @@ const Card = ({ name, price, image, id }) => {
         <Link style={{ textDecoration: "none" }} to={`/product-detail/${id}`}>
           <img
             style={{ height: "300px" }}
-            src={image[0].url}
+            src={image}
             className="card-img-top"
             alt="..."
           />
