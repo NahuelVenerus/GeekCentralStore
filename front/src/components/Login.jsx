@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import { BASE_ROUTE } from "../rutas";
 import { setUser } from "../state/user";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import useInput from "../hooks/useInput";
 
@@ -31,25 +31,27 @@ function Login() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Nickname
-        <input {...nickname} type="text" />
-      </label>
+    <div>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Nickname
+          <input {...nickname} type="text" />
+        </label>
 
-      <br />
-      <br />
+        <br />
+        <br />
 
-      <label>
-        Contraseña
-        <input {...password} type="password" />
-      </label>
+        <label>
+          Contraseña
+          <input {...password} type="password" />
+        </label>
 
-      <br />
-      <br />
+        <br />
+        <br />
 
-      <button>Ingresar</button>
-    </form>
+        <button>Ingresar</button>
+      </form>
+    </div>
   );
 }
 

@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useDebugValue, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { BASE_ROUTE } from "../rutas";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setProductList } from "../state/productList";
 
 const Card = ({ name, price, image, id }) => {
-  const { nickname } = useSelector((state) => state.user);
-
+  const { nickname, is_admin } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
   const handlerAdd = (e) => {
     e.preventDefault();
     console.log("ID", id, "NICKNAME", nickname);
@@ -22,6 +23,21 @@ const Card = ({ name, price, image, id }) => {
       });
   };
 
+  const handleDelete = () => {
+    axios
+      .delete(`${BASE_ROUTE}/api/admin/delete-product`, {
+        data: {
+          id: id,
+        },
+      })
+      .then((prod) => dispatch(setProductList(prod)))
+      .catch((Error) => console.log(Error));
+  };
+
+  const handleEdit = () => {
+    axios.update(`${BASE_ROUTE}/api/admin/edit-product`);
+  };
+
   return (
     <div className="col d-flex justify-content-center mb-4">
       <div
@@ -31,7 +47,7 @@ const Card = ({ name, price, image, id }) => {
         <Link style={{ textDecoration: "none" }} to={`/product-detail/${id}`}>
           <img
             style={{ height: "300px" }}
-            src={image[0].url}
+            src={image}
             className="card-img-top"
             alt="..."
           />
@@ -39,9 +55,24 @@ const Card = ({ name, price, image, id }) => {
         <div className="card-body">
           <h5 className="card-text">${price}</h5>
           <h5 className="card-text">{name}</h5>
-          <button className="btn btn-info" onClick={handlerAdd}>
-            Agregar al Carrito
-          </button>
+
+          {is_admin ? (
+            <>
+              <button className="btn btn-info" onClick={handleDelete}>
+                Eliminar
+              </button>
+
+              <button className="btn btn-info" onClick={handleEdit}>
+                Editar
+              </button>
+            </>
+          ) : (
+            <>
+              <button className="btn btn-info" onClick={handlerAdd}>
+                Agregar al Carrito
+              </button>
+            </>
+          )}
         </div>
       </div>
     </div>
