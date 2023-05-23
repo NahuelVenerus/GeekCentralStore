@@ -47,8 +47,12 @@ function SignUp() {
         <Form className="container" onSubmit={handleSubmit}>
           <div className="row">
             <Form.Group className="mb-3 p-2 col-6" controlId="formBasicEmail">
-              <Form.Label>Name</Form.Label>
-              <Form.Control {...name} type="text" placeholder="name" />
+              <div className="container">
+                <div className="row">
+                  <Form.Label>Name</Form.Label>
+                  <Form.Control {...name} type="text" placeholder="name" />
+                </div>
+              </div>
             </Form.Group>
 
             <Form.Group className="mb-3 p-2 col-6" controlId="formBasicEmail">
