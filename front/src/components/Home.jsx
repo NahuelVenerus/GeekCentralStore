@@ -7,7 +7,7 @@ function Home() {
   const user = useSelector((state) => state.user);
 
   return (
-    <div className="bg-black">
+    <div>
       <h2>Home</h2>
       <div>
         {user.is_admin ? (
