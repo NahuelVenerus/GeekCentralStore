@@ -37,6 +37,7 @@ exports.login_user = asyncHandler(async (req, res, next) => {
     const payload = {
       email: validatedUser.email,
       nickname: validatedUser.nickname,
+      is_admin: validatedUser.is_admin,
     };
 
     let userCookie = await generateCookie(payload);

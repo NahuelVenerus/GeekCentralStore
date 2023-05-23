@@ -29,14 +29,19 @@ function Navbar() {
 
   return (
     <nav>
+      {user.is_admin ? (
+        ""
+      ) : (
+        <Link to="/shopping-cart">
+          <button>Carrito</button>
+        </Link>
+      )}
       <Link to="/">
         <button onClick={handleHome}>Home</button>
       </Link>
+
       {user.nickname ? (
         <div>
-          <Link to="/shopping-cart">
-            <button>Carrito</button>
-          </Link>
           <Link to="/logout">
             <button onClick={handleLogOut}>Logout</button>
           </Link>
@@ -51,7 +56,6 @@ function Navbar() {
           </Link>
         </div>
       )}
-      {/* <Searcher /> */}
     </nav>
   );
 }
