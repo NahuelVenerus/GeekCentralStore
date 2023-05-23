@@ -35,14 +35,16 @@ const Searcher = () => {
 
   return (
     <>
-      <form onSubmit={handleSearch}>
+      <form className={"d-flex "} onSubmit={handleSearch}>
         <input
-          type="text"
-          className="input"
+          type="search"
+          className="form-control me-2"
           placeholder="Buscar"
           {...searchInput}
         />
-        <input type="submit" />
+        <button class="btn btn-danger" type="submit">
+          Buscar
+        </button>
       </form>
     </>
   );

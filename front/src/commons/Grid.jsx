@@ -24,7 +24,6 @@ const Grid = () => {
 
   return (
     <>
-      <Searcher />
       <div className="container text-center">
         <div className="row">
           {products.length > 0 ? (

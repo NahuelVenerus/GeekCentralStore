@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  padding: 10%;
+  background: #2b2d42;
 }
 
 .App-logo {
@@ -40,4 +42,8 @@
 .pepito {
   display: flex;
   justify-content: space-between;
+}
+
+.pink-shadow {
+  box-shadow: 10px 10px 10px #f82d97;
 }
