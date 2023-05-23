@@ -1,10 +1,15 @@
 import { createAction, createReducer } from "@reduxjs/toolkit";
-import { fakeData } from "../utils/fakeData";
 
 export const setProductList = createAction("SET_PRODUCT_LIST");
 export const setInitialState = createAction("SET_INITIAL_STATE");
 
-const initialState = fakeData;
+const initialState = {
+  name: null,
+  price: null,
+  description: null,
+  rating: null,
+  image: null,
+};
 
 export const productListReducer = createReducer(initialState, {
   [setProductList]: (state, action) => {

@@ -10,7 +10,7 @@ const {
 
 exports.get_all_products = asyncHandler(async (req, res) => {
   try {
-    let productsOnStock = await getAllProducts(name);
+    let productsOnStock = await getAllProducts();
     res.status(200).send(productsOnStock);
   } catch (error) {
     throw Error(error);
@@ -51,7 +51,7 @@ exports.delete_product = asyncHandler(async (req, res) => {
   try {
     const { id } = req.body;
     await deleteProduct(id);
-    res.sendStatus(202);
+    res.send("estoy en el delete_prod").status(200);
   } catch (error) {
     throw Error(error);
   }

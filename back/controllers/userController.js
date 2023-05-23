@@ -37,6 +37,7 @@ exports.login_user = asyncHandler(async (req, res, next) => {
     const payload = {
       email: validatedUser.email,
       nickname: validatedUser.nickname,
+      is_admin: validatedUser.is_admin,
     };
 
     let userCookie = await generateCookie(payload);
@@ -72,8 +73,9 @@ exports.update_user_data = asyncHandler(async (req, res) => {
 
 exports.get_user_shopping_cart = asyncHandler(async (req, res) => {
   try {
-    const { id } = req.params;
-    let userShoppingCart = await getUserShoppingCart(id);
+    const { nickname } = req.params;
+    const user = await searchUser(nickname);
+    let userShoppingCart = await getUserShoppingCart(user.id);
     res.status(200).send(userShoppingCart);
   } catch (error) {
     throw Error(error);

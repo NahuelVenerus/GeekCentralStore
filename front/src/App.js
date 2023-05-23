@@ -13,7 +13,10 @@ import { setUser } from "./state/user";
 import { useDispatch } from "react-redux";
 import ProductDetail from "./components/ProductDetail.jsx";
 import Searcher from "./components/Searcher";
-// import "./commons/card/card.css";
+import AdminViews from "./components/AdminViews";
+import AdminOrder from "./components/AdminOrder";
+import AdminProducts from "./components/AdminProducts";
+import AddProduct from "./components/AddProduct";
 
 function App() {
   const dispatch = useDispatch();
@@ -31,11 +34,15 @@ function App() {
       <Routes>
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/shopping-cart" element={<ShoppingCart />} />
+        <Route path="/shopping-cart/:nickname" element={<ShoppingCart />} />
         <Route path="/logout" element={<Home />} />
         <Route path="/product-detail/:id" element={<ProductDetail />} />
         <Route path="/" element={<Home />} />
         <Route path="/search/:name" element={<Searcher />} />
+        <Route path="/admin" element={<AdminViews />} />
+        <Route path="/admin-products" element={<AdminProducts />} />
+        <Route path="/add-product" element={<AddProduct />} />
+        <Route path="/admin-order" element={<AdminOrder />} />
       </Routes>
       <Footer />
     </div>
