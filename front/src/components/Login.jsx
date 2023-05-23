@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import { BASE_ROUTE } from "../rutas";
 import { setUser } from "../state/user";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import useInput from "../hooks/useInput";
 

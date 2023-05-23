@@ -3,28 +3,24 @@ import Button from "react-bootstrap/Button";
 import axios from "axios";
 import { BASE_ROUTE } from "../rutas";
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router";
 
-export default function CarritoCard({ producto }) {
+export default function CarritoCard({ cartProduct, setDeletedProduct }) {
   const [product, setProduct] = useState({});
-  const [quantity, setQuantity] = useState(producto.quantity);
+  const [quantity, setQuantity] = useState(cartProduct.quantity);
   const [isEditing, setIsEditing] = useState(false);
-  const { nickname } = useParams();
-  const navigate = useNavigate();
 
   const fetchProducts = () => {
     axios
-      .get(`${BASE_ROUTE}/api/products/${producto.id}`)
+      .get(`${BASE_ROUTE}/api/products/${cartProduct.productId}`)
       .then((productData) => {
         console.log("productData", productData);
         setProduct(productData.data);
       });
   };
-
   const setCartProductQuantity = () => {
     axios
       .put(`${BASE_ROUTE}/api/cart-products/edit`, {
-        id: producto.id,
+        id: cartProduct.id,
         quantity: quantity,
       })
       .catch((err) => console.log(err));
@@ -49,12 +45,12 @@ export default function CarritoCard({ producto }) {
     axios
       .delete(`${BASE_ROUTE}/api/cart-products/remove`, {
         data: {
-          id: product.id,
+          id: cartProduct.id,
         },
       })
-      .then(() => {
-        setProduct({});
-        navigate(`/shopping-cart/${nickname}`);
+      .then((prod) => {
+        console.log("product ", prod);
+        setDeletedProduct(cartProduct.id);
       })
       .catch((err) => console.log(err));
   };

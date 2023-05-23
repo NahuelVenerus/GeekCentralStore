@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation } from "swiper";
 import "swiper/swiper-bundle.min.css";
@@ -8,17 +8,13 @@ import { BASE_ROUTE } from "../rutas";
 import { setAdd } from "../state/shoppingCart";
 import axios from "axios";
 import { useParams } from "react-router";
-import { BASE_ROUTE } from "../rutas";
-import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
-
-SwiperCore.use([Navigation]);
 
 SwiperCore.use([Navigation]);
 
 export default function ShoppingCart() {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.shoppingCart);
+  const [deletedProduct, setDeletedProduct] = useState({});
   const { nickname } = useParams();
   const navigationPrevRef = useRef(null);
   const navigationNextRef = useRef(null);
@@ -37,7 +33,7 @@ export default function ShoppingCart() {
 
   useEffect(() => {
     fetchCarts();
-  }, [nickname]);
+  }, [nickname, deletedProduct]);
 
   return (
     <div>
@@ -52,7 +48,7 @@ export default function ShoppingCart() {
         >
           {products.map((p) => (
             <SwiperSlide key={p.id}>
-              <CarritoCard producto={p} />
+              <CarritoCard producto={p} setDeletedProduct={setDeletedProduct} />
             </SwiperSlide>
           ))}
           <div ref={navigationPrevRef} className="swiper-button-prev" />
