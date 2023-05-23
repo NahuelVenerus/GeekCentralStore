@@ -42,6 +42,9 @@ function Navbar() {
 
       {user.nickname ? (
         <div>
+          <Link to={`/shopping-cart/${user.nickname}`}>
+            <button>Carrito</button>
+          </Link>
           <Link to="/logout">
             <button onClick={handleLogOut}>Logout</button>
           </Link>
