@@ -2,22 +2,15 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
 import { BASE_ROUTE } from "../rutas";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export default function CarritoCard({ cartProduct, setDeletedProduct }) {
-  const [product, setProduct] = useState({});
   const [quantity, setQuantity] = useState(cartProduct.quantity);
   const [isEditing, setIsEditing] = useState(false);
+  console.log("cart product", cartProduct);
 
-  const fetchProducts = () => {
-    axios
-      .get(`${BASE_ROUTE}/api/products/${cartProduct.id}`)
-      .then((productData) => {
-        console.log("productData", productData);
-        setProduct(productData.data);
-      });
-  };
   const setCartProductQuantity = () => {
+    console.log("quantity", quantity);
     axios
       .put(`${BASE_ROUTE}/api/cart-products/edit`, {
         id: cartProduct.id,
@@ -45,30 +38,28 @@ export default function CarritoCard({ cartProduct, setDeletedProduct }) {
     axios
       .delete(`${BASE_ROUTE}/api/cart-products/remove`, {
         data: {
-          id: cartProduct.id,
+          id: cartProduct.product.id,
         },
       })
       .then((prod) => {
         console.log("product ", prod);
-        setDeletedProduct(cartProduct.id);
+        setDeletedProduct(cartProduct.product.id);
       })
       .catch((err) => console.log(err));
   };
-
-  useEffect(() => {
-    fetchProducts();
-  }, []);
 
   return (
     <div>
       <div>
         <Card>
-          <Card.Img src={product.image} />
+          <Card.Img src={cartProduct.product?.image} />
           <Card.Body>
             <Button onClick={handleDelete}>Delete</Button>
-            <Card.Title>{product.name}</Card.Title>
-            <Card.Text>Valor: ${product.price}</Card.Text>
-            <Card.Text>Total: ${product.price * quantity}</Card.Text>
+            <Card.Title>{cartProduct.product?.name}</Card.Title>
+            <Card.Text>Valor: ${cartProduct.product?.price}</Card.Text>
+            <Card.Text>
+              Total: ${cartProduct.product?.price * quantity}
+            </Card.Text>
             {isEditing ? (
               <div>
                 <Card.Text>

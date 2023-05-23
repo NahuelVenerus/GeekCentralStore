@@ -6,7 +6,7 @@ const Order = require("./Order");
 
 User.hasMany(ShoppingCart, { as: "shopping_cart" });
 ShoppingCart.belongsTo(User, { as: "user" });
-ShoppingCart.hasMany(CartProduct, { as: "product" });
+ShoppingCart.hasMany(CartProduct, { as: "cart_product" });
 CartProduct.belongsTo(ShoppingCart, { as: "shopping_cart" });
 CartProduct.belongsTo(Product, { as: "product" });
 
