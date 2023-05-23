@@ -47,7 +47,7 @@ function Navbar() {
           <Searcher />
           {user.nickname ? (
             <div>
-              <Link to="/shopping-cart">
+              <Link to={`/shopping-cart/${user.nickname}`}>
                 <button>Carrito</button>
               </Link>
               <Link to="/logout">
