@@ -10,7 +10,7 @@ const {
 
 exports.get_all_products = asyncHandler(async (req, res) => {
   try {
-    let productsOnStock = await getAllProducts(name);
+    let productsOnStock = await getAllProducts();
     res.status(200).send(productsOnStock);
   } catch (error) {
     throw Error(error);

@@ -26,10 +26,6 @@ exports.add_new_cart_product = asyncHandler(async (req, res) => {
     newCartProduct.setProduct(foundProduct);
     newCartProduct.setShopping_cart(userShoppingCart);
 
-    console.log("user", foundUser);
-    console.log("product", foundProduct);
-    console.log("cart", userShoppingCart);
-
     res.status(201).send(newCartProduct);
   } catch (error) {
     throw Error(error);
@@ -39,8 +35,8 @@ exports.add_new_cart_product = asyncHandler(async (req, res) => {
 exports.delete_cart_product = asyncHandler(async (req, res) => {
   try {
     const { id } = req.body;
-    await delete_cart_product(id);
-    res.sendStatus(202);
+    const deletedProduct = await delete_cart_product(id);
+    res.status(202).send(deletedProduct);
   } catch (error) {
     throw Error(error);
   }
@@ -49,10 +45,18 @@ exports.delete_cart_product = asyncHandler(async (req, res) => {
 exports.edit_cart_product = asyncHandler(async (req, res) => {
   try {
     const { id, quantity } = req.body;
-    console.log("body", req.body);
     const updatedCartProduct = await edit_cart_product(id, quantity);
-    console.log("updatedCart", updatedCartProduct);
     res.status(200).send(updatedCartProduct);
+  } catch (error) {
+    throw Error(error);
+  }
+});
+
+exports.get_product = asyncHandler(async (req, res) => {
+  try {
+    const { id } = req.params;
+    const product = await getProduct(id);
+    res.status(200).send(product);
   } catch (error) {
     throw Error(error);
   }

@@ -1,36 +1,63 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation } from "swiper";
 import "swiper/swiper-bundle.min.css";
-// import { fakeData } from "../utils/fakeData";
-// import CarritoCard from "../commons/CarritoCard";
-import { useSelector } from "react-redux";
+import CarritoCard from "../commons/CarritoCard";
+import { useDispatch, useSelector } from "react-redux";
+import { BASE_ROUTE } from "../rutas";
+import { setAdd } from "../state/shoppingCart";
+import axios from "axios";
+import { useParams } from "react-router";
 
 SwiperCore.use([Navigation]);
 
 SwiperCore.use([Navigation]);
 
 export default function ShoppingCart() {
-  const products = useSelector((state) => state.ShoppingCart);
-  console.log(products);
+  const dispatch = useDispatch();
+  const products = useSelector((state) => state.shoppingCart);
+  const { nickname } = useParams();
   const navigationPrevRef = useRef(null);
   const navigationNextRef = useRef(null);
+  if (products.product) {
+    console.log("product", products.product);
+  }
+
+  const fetchCarts = () => {
+    axios
+      .get(`${BASE_ROUTE}/api/users/shopping-cart/${nickname}`)
+      .then((products) => {
+        dispatch(setAdd(products.data.product));
+      })
+      .catch((err) => console.log(err));
+  };
+
+  useEffect(() => {
+    fetchCarts();
+  }, [nickname]);
+
   return (
-    <Swiper
-      slidesPerView={3}
-      spaceBetween={20}
-      navigation={{
-        prevEl: navigationPrevRef.current,
-        nextEl: navigationNextRef.current,
-      }}
-    >
-      {/*   {products.map((product) => (
-        <SwiperSlide key={product.id}>
-          <CarritoCard product={product} />
-        </SwiperSlide>
-      ))} */}
-      <div ref={navigationPrevRef} className="swiper-button-prev" />
-      <div ref={navigationNextRef} className="swiper-button-next" />
-    </Swiper>
+    <div>
+      {products[0] ? (
+        <Swiper
+          slidesPerView={3}
+          spaceBetween={20}
+          navigation={{
+            prevEl: navigationPrevRef.current,
+            nextEl: navigationNextRef.current,
+          }}
+        >
+          {products.map((p) => (
+            <SwiperSlide key={p.id}>
+              <CarritoCard producto={p} />
+            </SwiperSlide>
+          ))}
+          <div ref={navigationPrevRef} className="swiper-button-prev" />
+          <div ref={navigationNextRef} className="swiper-button-next" />
+        </Swiper>
+      ) : (
+        <h1>El carrito está vacío</h1>
+      )}
+    </div>
   );
 }

@@ -1,10 +1,11 @@
-const { ShoppingCart, User } = require("../models");
+const { ShoppingCart, User, CartProduct } = require("../models");
 
 exports.getUserShoppingCart = async (id) => {
   try {
     let shoppingCart = await ShoppingCart.findOne({
       where: { userId: id },
       include: { model: User, as: "user" },
+      include: { model: CartProduct, as: "product" },
     });
     return shoppingCart;
   } catch (error) {
