@@ -5,6 +5,9 @@ import { setUser } from "../state/user";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import useInput from "../hooks/useInput";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
 
 function Login() {
   const nickname = useInput();
@@ -31,8 +34,36 @@ function Login() {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <div className="container-fluid p-3" style={{ background: "#2B2D42" }}>
+      <Card className="container p-3 card-form " style={{ width: "20rem" }}>
+        <Form className="container" onSubmit={handleSubmit}>
+          <Form.Group className="mb-3 p-2" controlId="formBasicEmail">
+            <Form.Label>Username</Form.Label>
+            <Form.Control {...nickname} type="text" placeholder="User" />
+          </Form.Group>
+
+          <Form.Group className="mb-3 p-2" controlId="formBasicPassword">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              {...password}
+              type="password"
+              placeholder="Password"
+            />
+          </Form.Group>
+          <Button
+            className="button-card"
+            style={{ background: "#120910" }}
+            type="submit"
+          >
+            Submit
+          </Button>
+        </Form>
+      </Card>
+    </div>
+  );
+
+  // {
+  /* <form onSubmit={handleSubmit}>
         <label>
           Nickname
           <input {...nickname} type="text" />
@@ -51,8 +82,8 @@ function Login() {
 
         <button>Ingresar</button>
       </form>
-    </div>
-  );
+  </div> */
+  // }
 }
 
 export default Login;

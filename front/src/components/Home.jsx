@@ -5,8 +5,9 @@ import { Link } from "react-router-dom";
 
 function Home() {
   const user = useSelector((state) => state.user);
+
   return (
-    <div>
+    <div className="bg-black">
       <h2>Home</h2>
       <div>
         {user.is_admin ? (

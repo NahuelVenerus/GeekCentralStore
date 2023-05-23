@@ -41,3 +41,15 @@
   display: flex;
   justify-content: space-between;
 }
+
+.card-form {
+  box-shadow: 10px 10px 10px rgba(46, 248, 160, 0.3);
+  font-size: 1.5em;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+.button-card {
+  box-shadow: 10px 10px 10px rgba(46, 248, 160, 0.3);
+
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande";
+}
