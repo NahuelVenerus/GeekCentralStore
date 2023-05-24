@@ -3,6 +3,7 @@ import Button from "react-bootstrap/Button";
 import axios from "axios";
 import { BASE_ROUTE } from "../rutas";
 import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
 
 export default function CarritoCard({
   cartProduct,
@@ -50,7 +51,14 @@ export default function CarritoCard({
           id: cartProduct.product.id,
         },
       })
-      .then(() => setDeletedProduct(cartProduct.product.id))
+      .then(() => {
+        Swal.fire({
+          text: "Producto eliminado con éxito",
+          icon: "success",
+          confirmButtonText: "Aceptar",
+        });
+        setDeletedProduct(cartProduct.product.id);
+      })
       .catch((err) => console.log(err));
   };
 
