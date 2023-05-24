@@ -50,41 +50,72 @@ function SignUp() {
               <div className="container">
                 <div className="row">
                   <Form.Label>Name</Form.Label>
-                  <Form.Control {...name} type="text" placeholder="name" />
+                  <Form.Control
+                    required
+                    {...name}
+                    type="text"
+                    placeholder="name"
+                  />
                 </div>
               </div>
             </Form.Group>
 
             <Form.Group className="mb-3 p-2 col-6" controlId="formBasicEmail">
               <Form.Label>Lastname</Form.Label>
-              <Form.Control {...lastName} type="text" placeholder="lastname" />
+              <Form.Control
+                required
+                {...lastName}
+                type="text"
+                placeholder="lastname"
+              />
             </Form.Group>
 
             <Form.Group className="mb-3 p-2" controlId="formBasicEmail">
               <Form.Label>Username</Form.Label>
-              <Form.Control {...nickname} type="text" placeholder="username" />
+              <Form.Control
+                required
+                {...nickname}
+                type="text"
+                placeholder="username"
+              />
             </Form.Group>
             <Form.Group className="mb-3 p-2" controlId="formBasicEmail">
               <Form.Label>City</Form.Label>
-              <Form.Control {...city} type="text" placeholder="city" />
+              <Form.Control required {...city} type="text" placeholder="city" />
             </Form.Group>
             <Form.Group className="mb-3 p-2 col-8" controlId="formBasicEmail">
               <Form.Label>Direction</Form.Label>
-              <Form.Control {...address} type="text" placeholder="direction" />
+              <Form.Control
+                required
+                {...address}
+                type="text"
+                placeholder="direction"
+              />
             </Form.Group>
             <Form.Group className="mb-3 p-2 col-4" controlId="formBasicEmail">
               <Form.Label>Zip code</Form.Label>
-              <Form.Control {...zip_code} type="number" placeholder="code" />
+              <Form.Control
+                required
+                {...zip_code}
+                type="number"
+                placeholder="code"
+              />
             </Form.Group>
 
             <Form.Group className="mb-3 p-2" controlId="formBasicEmail">
               <Form.Label>Email</Form.Label>
-              <Form.Control {...email} type="mail" placeholder="mail" />
+              <Form.Control
+                required
+                {...email}
+                type="mail"
+                placeholder="mail"
+              />
             </Form.Group>
 
             <Form.Group className="mb-3 p-2" controlId="formBasicPassword">
               <Form.Label>Password</Form.Label>
               <Form.Control
+                required
                 {...password}
                 type="password"
                 placeholder="password"
