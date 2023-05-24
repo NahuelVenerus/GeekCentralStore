@@ -17,6 +17,7 @@ import AdminViews from "./components/AdminViews";
 import AdminOrder from "./components/AdminOrder";
 import AdminProducts from "./components/AdminProducts";
 import AddProduct from "./components/AddProduct";
+import ManageUsers from "./components/ManageUsers";
 import EditProduct from "./components/EditProduct";
 
 function App() {
@@ -44,6 +45,7 @@ function App() {
         <Route path="/admin-products" element={<AdminProducts />} />
         <Route path="/add-product" element={<AddProduct />} />
         <Route path="/admin-order" element={<AdminOrder />} />
+        <Route path="/admin/manage-users" element={<ManageUsers />} />
         <Route path="/EditProduct/:id" element={<EditProduct />} />
       </Routes>
       <Footer />

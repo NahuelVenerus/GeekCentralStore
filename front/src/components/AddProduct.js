@@ -32,7 +32,7 @@ const AddProduct = () => {
           icon: "success",
           confirmButtonText: "Aceptar",
         });
-        navigate(`/`);
+        navigate(`/admin-products`);
       });
   };
 
