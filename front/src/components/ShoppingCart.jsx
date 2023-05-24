@@ -5,7 +5,7 @@ import "swiper/swiper-bundle.min.css";
 import CarritoCard from "../commons/CarritoCard";
 import { BASE_ROUTE } from "../rutas";
 import axios from "axios";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { setFinalPrice } from "../state/finalPrice";
 import Button from "react-bootstrap/esm/Button";
@@ -15,40 +15,57 @@ SwiperCore.use([Navigation]);
 export default function ShoppingCart() {
   const [products, setProducts] = useState([]);
   const [deletedProduct, setDeletedProduct] = useState({});
-  const [isEditing, setIsEditing] = useState(false);
+  const [editado, setEditado] = useState(false);
   const { nickname } = useParams();
   const navigationPrevRef = useRef(null);
   const navigationNextRef = useRef(null);
   const finalPrice = useSelector((state) => state.finalPrice);
   const [total, setTotal] = useState(finalPrice);
   const dispatch = useDispatch();
-  console.log("final price", finalPrice);
+  const navigate = useNavigate();
 
-  const fetchCarts = () => {
-    axios
-      .get(`${BASE_ROUTE}/api/users/shopping-cart/${nickname}`)
-      .then((products) => {
-        console.log("products", products);
-        setProducts(products.data.cart_product);
-      })
-      .catch((err) => console.log(err));
+  const fetchCarts = async () => {
+    try {
+      const createdCart = await axios.get(
+        `${BASE_ROUTE}/api/users/shopping-cart/${nickname}`
+      );
+      createdCart.data.cart_product?.sort(function (a, b) {
+        return a.productId - b.productId;
+      });
+      setProducts(createdCart.data.cart_product);
+      if (createdCart.data.cart_product)
+        getTotal(createdCart.data.cart_product);
+    } catch (error) {
+      throw Error(error);
+    }
   };
 
   const handleBuy = () => {
-    console.log("product id", products[0].id);
     axios
       .post(`${BASE_ROUTE}/api/orders/create`, {
         total: total,
-        shoppingCartId: products[0].id,
+        shoppingCartId: products[0].shoppingCartId,
         nickname: nickname,
       })
-      .then((order) => console.log("order", order))
+      .then(() => {
+        navigate("/");
+        setTotal(0);
+      })
       .catch((err) => console.log(err));
   };
 
+  const getTotal = (prods) => {
+    let total = 0;
+    for (const p of prods) {
+      total += p.quantity * p.product.price;
+    }
+    return setTotal(total);
+  };
+
   useEffect(() => {
+    console.log("Hola");
     fetchCarts();
-  }, [nickname, deletedProduct]);
+  }, [nickname, deletedProduct, editado]);
 
   useEffect(() => {
     dispatch(setFinalPrice(total));
@@ -60,7 +77,7 @@ export default function ShoppingCart() {
 
   return (
     <div>
-      {products[0] ? (
+      {products ? (
         <Swiper
           slidesPerView={3}
           spaceBetween={20}
@@ -69,15 +86,15 @@ export default function ShoppingCart() {
             nextEl: navigationNextRef.current,
           }}
         >
-          {products.map((p) => (
+          {products?.map((p) => (
             <SwiperSlide key={p.id}>
               <CarritoCard
                 cartProduct={p}
                 setDeletedProduct={setDeletedProduct}
-                isEditing={isEditing}
-                setIsEditing={setIsEditing}
                 total={total}
                 setTotal={setTotal}
+                editado={editado}
+                setEditado={setEditado}
               />
             </SwiperSlide>
           ))}

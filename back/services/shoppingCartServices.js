@@ -13,6 +13,7 @@ exports.getUserShoppingCart = async (id) => {
         },
       ],
     });
+    console.log("shopping cart ", shoppingCart);
     return shoppingCart;
   } catch (error) {
     throw Error(error);
@@ -34,6 +35,16 @@ exports.getAllCarts = async () => {
       include: { model: User, as: "user" },
     });
     return carts;
+  } catch (error) {
+    throw Error(error);
+  }
+};
+
+exports.delete_cart = async (id) => {
+  try {
+    console.log("destroyed id", id);
+    const deletedCart = await ShoppingCart.destroy({ where: { id: id } });
+    console.log(deletedCart);
   } catch (error) {
     throw Error(error);
   }
