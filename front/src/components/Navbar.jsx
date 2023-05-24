@@ -30,57 +30,55 @@ function Navbar() {
   };
 
   return (
-    <div className={"container"}>
-      <nav className={"navbar navbar-expand-md navbar-dark fixed-top bg-black"}>
-        <div className={"container-fluid"}>
-          <a class="navbar-brand">
-            <Link to="/">
-              <img
-                src="geekLogo.png"
-                alt="Geek Central Logo"
-                width="300px"
-                height="74.05px"
-                onClick={handleHome}
-              />
+    <nav className={"navbar navbar-expand-md navbar-dark fixed-top bg-black"}>
+      <div className={"container-fluid"}>
+        <a class="navbar-brand">
+          <Link to="/">
+            <img
+              src="geekLogo.png"
+              alt="Geek Central Logo"
+              width="300px"
+              height="74.05px"
+              onClick={handleHome}
+            />
+          </Link>
+        </a>
+        <Searcher />
+        {user.nickname ? (
+          <div className={"d-flex justify-content-end"}>
+            <Link to={`/shopping-cart/${user.nickname}`}>
+              <Button
+                style={{ backgroundColor: "#EF233C", borderColor: "#EF233C" }}
+              >
+                <img src="cart.png" alt="cart" width="30px" height="30px" />
+              </Button>
             </Link>
-          </a>
-          <Searcher />
-          {user.nickname ? (
-            <div className={"d-flex justify-content-end"}>
-              <Link to={`/shopping-cart/${user.nickname}`}>
-                <Button
-                  style={{ backgroundColor: "#EF233C", borderColor: "#EF233C" }}
-                >
-                  <img src="cart.png" alt="cart" width="30px" height="30px" />
-                </Button>
-              </Link>
-              <Link to="/logout">
-                <button
-                  type="button"
-                  className={"btn btn-outline-danger"}
-                  onClick={handleLogOut}
-                >
-                  Logout
-                </button>
-              </Link>
-            </div>
-          ) : (
-            <div>
-              <Link to="/login">
-                <button type="button" className={"btn btn-outline-danger"}>
-                  Login
-                </button>
-              </Link>
-              <Link to="/signup">
-                <button type="button" className={"btn btn-outline-danger"}>
-                  Signup
-                </button>
-              </Link>
-            </div>
-          )}
-        </div>
-      </nav>
-    </div>
+            <Link to="/logout">
+              <button
+                type="button"
+                className={"btn btn-outline-danger"}
+                onClick={handleLogOut}
+              >
+                Logout
+              </button>
+            </Link>
+          </div>
+        ) : (
+          <div>
+            <Link to="/login">
+              <button type="button" className={"btn btn-outline-danger"}>
+                Login
+              </button>
+            </Link>
+            <Link to="/signup">
+              <button type="button" className={"btn btn-outline-danger"}>
+                Signup
+              </button>
+            </Link>
+          </div>
+        )}
+      </div>
+    </nav>
   );
 }
 
