@@ -39,12 +39,18 @@ function Login() {
         <Form className="container" onSubmit={handleSubmit}>
           <Form.Group className="mb-3 p-2" controlId="formBasicEmail">
             <Form.Label>Username</Form.Label>
-            <Form.Control {...nickname} type="text" placeholder="User" />
+            <Form.Control
+              required
+              {...nickname}
+              type="text"
+              placeholder="User"
+            />
           </Form.Group>
 
           <Form.Group className="mb-3 p-2" controlId="formBasicPassword">
             <Form.Label>Password</Form.Label>
             <Form.Control
+              required
               {...password}
               type="password"
               placeholder="Password"

@@ -7,13 +7,14 @@ const AdminViews = () => {
     <Container fluid>
       <Row>
         <Col md={4} className="mb-4">
-          <Link to="/admin-products" className="card-link">
-            <Card>
+          <Card>
+            <Link to="/admin-products" className="card-link">
               <Button
                 className="admin-button"
                 style={{
                   height: "500px",
                   fontSize: "300%",
+                  width: "100%",
                 }}
               >
                 Productos
@@ -21,22 +22,19 @@ const AdminViews = () => {
               <Card.Text>
                 Aquí puedes ver, editar y eliminar los productos!
               </Card.Text>
-            </Card>
-          </Link>
+            </Link>
+          </Card>
         </Col>
         <Col md={4} className="mb-4">
-          <Link
-            to="/admin-order"
-            className="card-link"
-            style={{ textDecoration: "none" }}
-          >
-            <Card>
+          <Card>
+            <Link to="/admin-order" className="card-link">
               <Button
                 className="admin-button"
                 style={{
                   height: "500px",
                   fontSize: "300%",
                   backgroundColor: "#EF233C",
+                  width: "100%",
                 }}
               >
                 Pedidos
@@ -44,22 +42,19 @@ const AdminViews = () => {
               <Card.Text>
                 Aquí puedes ver los pedidos de todos los usuarios!
               </Card.Text>
-            </Card>
-          </Link>
+            </Link>
+          </Card>
         </Col>
         <Col md={4} className="mb-4">
-          <Link
-            to="/admin/manage-users"
-            className="card-link"
-            style={{ textDecoration: "none" }}
-          >
-            <Card>
+          <Card>
+            <Link to="/admin/manage-users" className="card-link">
               <Button
                 className="admin-button"
                 style={{
                   height: "500px",
                   fontSize: "300%",
                   backgroundColor: "#59cd90",
+                  width: "100%",
                 }}
               >
                 Usuarios
@@ -67,8 +62,8 @@ const AdminViews = () => {
               <Card.Text>
                 Aquí puedes ver, editar y eliminar los usuarios!
               </Card.Text>
-            </Card>
-          </Link>
+            </Link>
+          </Card>
         </Col>
       </Row>
     </Container>
