@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const AdminViews = () => {
   return (
-    <div>
+    <div className="admin">
       <Link to="/admin-products">
         <button>Productos</button>
       </Link>
