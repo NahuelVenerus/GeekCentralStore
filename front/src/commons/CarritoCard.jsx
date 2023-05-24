@@ -2,11 +2,17 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
 import { BASE_ROUTE } from "../rutas";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-export default function CarritoCard({ cartProduct, setDeletedProduct }) {
+export default function CarritoCard({
+  cartProduct,
+  setDeletedProduct,
+  isEditing,
+  setIsEditing,
+  total,
+  setTotal,
+}) {
   const [quantity, setQuantity] = useState(cartProduct.quantity);
-  const [isEditing, setIsEditing] = useState(false);
   console.log("cart product", cartProduct);
 
   const setCartProductQuantity = () => {
@@ -15,6 +21,15 @@ export default function CarritoCard({ cartProduct, setDeletedProduct }) {
       .put(`${BASE_ROUTE}/api/cart-products/edit`, {
         id: cartProduct.id,
         quantity: quantity,
+      })
+      .then((editedProduct) => {
+        console.log("editedProduct quantity", editedProduct.data.quantity);
+        console.log("product price", cartProduct.product.price);
+        setTotal(
+          total +
+            Number(editedProduct.data.quantity * cartProduct.product.price)
+        );
+        console.log("total", total);
       })
       .catch((err) => console.log(err));
   };
@@ -48,6 +63,8 @@ export default function CarritoCard({ cartProduct, setDeletedProduct }) {
       .catch((err) => console.log(err));
   };
 
+  useEffect(() => {}, [total]);
+
   return (
     <div>
       <div>
@@ -71,7 +88,6 @@ export default function CarritoCard({ cartProduct, setDeletedProduct }) {
             ) : (
               <div>
                 <Button onClick={handleEdit}>Edit</Button>
-                <Button>Comprar</Button>
               </div>
             )}
           </Card.Body>
