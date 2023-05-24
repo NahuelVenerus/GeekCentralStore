@@ -13,19 +13,21 @@ const AddProduct = () => {
   const price = useInput();
   const rating = useInput();
   const image = useInput();
-  // const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const onSubmit = (e) => {
     e.preventDefault();
-    axios.post(`${BASE_ROUTE}/api/products/add`, {
-      name: name.value,
-      description: description.value,
-      price: price.value,
-      rating: rating.value,
-      image: image.value,
-    });
-    //.then(() => navigate(`/`));
+    axios
+      .post(`${BASE_ROUTE}/api/products/add`, {
+        name: name.value,
+        description: description.value,
+        price: price.value,
+        rating: rating.value,
+        image: image.value,
+      })
+      // .then(() => navigate(`/admin-products`));
+      .then(() => navigate(`/admin-products`));
+
     // axios
     //   .get(`${BASE_ROUTE}/api/products`)
     //   .then((res) => dispatch(setProductList(res.data)));

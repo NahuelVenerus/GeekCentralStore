@@ -17,6 +17,7 @@ import AdminViews from "./components/AdminViews";
 import AdminOrder from "./components/AdminOrder";
 import AdminProducts from "./components/AdminProducts";
 import AddProduct from "./components/AddProduct";
+import ManageUsers from "./components/ManageUsers";
 
 function App() {
   const dispatch = useDispatch();
@@ -43,6 +44,7 @@ function App() {
         <Route path="/admin-products" element={<AdminProducts />} />
         <Route path="/add-product" element={<AddProduct />} />
         <Route path="/admin-order" element={<AdminOrder />} />
+        <Route path="/admin/manage-users" element={<ManageUsers />} />
       </Routes>
       <Footer />
     </div>
