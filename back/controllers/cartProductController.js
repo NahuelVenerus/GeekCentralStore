@@ -21,6 +21,7 @@ exports.add_new_cart_product = asyncHandler(async (req, res) => {
     if (!userShoppingCart) {
       userShoppingCart = await createShoppingCart();
     }
+    console.log("cartid", userShoppingCart.id);
     const foundProduct = await getProduct(id);
     userShoppingCart.setUser(foundUser);
     newCartProduct.setProduct(foundProduct);
