@@ -4,6 +4,7 @@ import axios from "axios";
 import { BASE_ROUTE } from "../rutas";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router";
 
 export default function CarritoCard({
   cartProduct,
@@ -15,6 +16,7 @@ export default function CarritoCard({
 }) {
   const [quantity, setQuantity] = useState(cartProduct.quantity);
   const [isEditing, setIsEditing] = useState(false);
+  const navigate = useNavigate();
 
   const setCartProductQuantity = () => {
     axios

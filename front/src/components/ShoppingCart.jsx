@@ -9,6 +9,7 @@ import { useNavigate, useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { setFinalPrice } from "../state/finalPrice";
 import Button from "react-bootstrap/esm/Button";
+import Swal from "sweetalert2";
 
 SwiperCore.use([Navigation]);
 
@@ -50,6 +51,11 @@ export default function ShoppingCart() {
       .then(() => {
         navigate("/");
         setTotal(0);
+        Swal.fire({
+          text: "Compra realizada con éxito!",
+          icon: "success",
+          confirmButtonText: "Aceptar",
+        });
       })
       .catch((err) => console.log(err));
   };
@@ -63,7 +69,6 @@ export default function ShoppingCart() {
   };
 
   useEffect(() => {
-    console.log("Hola");
     fetchCarts();
   }, [nickname, deletedProduct, editado]);
 

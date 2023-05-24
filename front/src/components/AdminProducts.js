@@ -9,14 +9,11 @@ import { setProductList } from "../state/productList";
 const AdminProducts = () => {
   const products = useSelector((state) => state.productList);
   const dispatch = useDispatch();
-  //const [product, setProduct] = useState([]);
-  // console.log(product, "products");
 
   useEffect(() => {
-    axios.get(`${BASE_ROUTE}/api/products`).then((res) => {
-      console.log("RESS", res.data);
-      dispatch(setProductList(res.data));
-    });
+    axios
+      .get(`${BASE_ROUTE}/api/products`)
+      .then((res) => dispatch(setProductList(res.data)));
   }, [dispatch]);
 
   return (
@@ -30,11 +27,11 @@ const AdminProducts = () => {
       ) : (
         <h1>No products in stock </h1>
       )}
-      <button className="btn btn-primary me-md-2" type="button">
-        <Link to="/add-product" style={{ color: "white" }}>
+      <Link to="/add-product" style={{ color: "white" }}>
+        <button className="btn btn-primary me-md-2" type="button">
           Add product
-        </Link>
-      </button>
+        </button>
+      </Link>
     </div>
   );
 };

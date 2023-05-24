@@ -29,7 +29,13 @@ const Card = ({ name, price, image, id }) => {
         navigate("/");
       })
       .catch((error) => {
-        console.log("error axios front");
+        Swal.fire({
+          text: "El producto no se pudo agregar al carrito",
+          icon: "error",
+          confirmButtonText: "Aceptar",
+        });
+        navigate("/");
+        console.log(error);
       });
   };
 
