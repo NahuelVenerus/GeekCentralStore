@@ -3,6 +3,8 @@ import Button from "react-bootstrap/Button";
 import axios from "axios";
 import { BASE_ROUTE } from "../rutas";
 import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router";
 
 export default function CarritoCard({
   cartProduct,
@@ -14,6 +16,7 @@ export default function CarritoCard({
 }) {
   const [quantity, setQuantity] = useState(cartProduct.quantity);
   const [isEditing, setIsEditing] = useState(false);
+  const navigate = useNavigate();
 
   const setCartProductQuantity = () => {
     axios
@@ -50,7 +53,14 @@ export default function CarritoCard({
           id: cartProduct.product.id,
         },
       })
-      .then(() => setDeletedProduct(cartProduct.product.id))
+      .then(() => {
+        Swal.fire({
+          text: "Producto eliminado con éxito",
+          icon: "success",
+          confirmButtonText: "Aceptar",
+        });
+        setDeletedProduct(cartProduct.product.id);
+      })
       .catch((err) => console.log(err));
   };
 

@@ -1,31 +1,29 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { BASE_ROUTE } from "../rutas";
-import { useSelector } from "react-redux";
-import CartPedidos from "./CartPedidos";
+import CardPedidos from "./CardPedidos";
 
 const AdminOrder = () => {
-  const admin = useSelector((state) => state.user);
-  const [pedidos, setPedidos] = useState({});
-  console.log(admin);
+  const [pedidos, setPedidos] = useState([]);
+
   useEffect(() => {
     axios
       .get(`${BASE_ROUTE}/api/orders`)
-      .then((res) => console.log(res))
+      .then((res) => setPedidos(res.data))
       .catch((error) => console.log(error));
   }, []);
-
+  console.log("pedidos", pedidos);
   return (
     <div className="admin">
       <div>
-        {pedidos ? (
+        {pedidos[0] ? (
           <>
             {pedidos.map((pedido) => (
-              <cartPedidos key={pedido.id} {...pedido} />
+              <CardPedidos key={pedido.id} {...pedido} />
             ))}
           </>
         ) : (
-          <h1>No hay pedidos pendientes</h1>
+          <h1>No se han realizado pedidos aún</h1>
         )}
       </div>
     </div>

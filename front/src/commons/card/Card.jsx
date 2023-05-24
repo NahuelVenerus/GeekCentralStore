@@ -4,6 +4,7 @@ import axios from "axios";
 import { BASE_ROUTE } from "../../rutas";
 import { useDispatch, useSelector } from "react-redux";
 import { setProductList } from "../../state/productList";
+import Swal from "sweetalert2";
 
 const Card = ({ name, price, image, id }) => {
   const { nickname, is_admin } = useSelector((state) => state.user);
@@ -17,9 +18,22 @@ const Card = ({ name, price, image, id }) => {
         id: id,
         nickname: nickname,
       })
-      .then(() => alert("Product Added To Stock"))
+      .then(() => {
+        Swal.fire({
+          text: "Producto agregado al carrito con éxito",
+          icon: "success",
+          confirmButtonText: "Aceptar",
+        });
+        navigate("/");
+      })
       .catch((error) => {
-        console.log("error axios front");
+        Swal.fire({
+          text: "El producto no se pudo agregar al carrito",
+          icon: "error",
+          confirmButtonText: "Aceptar",
+        });
+        navigate("/");
+        console.log(error);
       });
   };
 
@@ -31,6 +45,11 @@ const Card = ({ name, price, image, id }) => {
         },
       })
       .then((prod) => {
+        Swal.fire({
+          text: "Producto eliminado con éxito",
+          icon: "success",
+          confirmButtonText: "Aceptar",
+        });
         dispatch(setProductList(prod));
         navigate("/admin-products");
       });
