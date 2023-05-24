@@ -29,7 +29,6 @@ exports.edit_cart_product = async (cartProductId, newQuantity) => {
         returning: true,
       }
     );
-    console.log(updatedCartProduct[1][0]);
     return updatedCartProduct[1][0];
   } catch (error) {
     throw Error(error);

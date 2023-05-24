@@ -1,5 +1,3 @@
-import axios from "axios";
-import { BASE_ROUTE } from "../rutas";
 import { useSelector } from "react-redux";
 import UserCard from "../commons/userCard";
 import { useState } from "react";
@@ -14,9 +12,19 @@ const ManageUsers = () => {
   console.log("soy User List", userList);
   return (
     <>
-      {userList.map((data) => (
-        <UserCard key={data.id} user={data} setDeletedUser={setDeletedUser} />
-      ))}
+      {userList[0] ? (
+        <div>
+          {userList.map((data) => (
+            <UserCard
+              key={data.id}
+              user={data}
+              setDeletedUser={setDeletedUser}
+            />
+          ))}
+        </div>
+      ) : (
+        <h1>No hay usuarios creados</h1>
+      )}
     </>
   );
 };
