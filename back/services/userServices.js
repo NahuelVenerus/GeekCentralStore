@@ -13,7 +13,6 @@ exports.searchUser = async (nickname) => {
 exports.createUser = async (userData) => {
   try {
     let newUser = await Users.create(userData);
-    console.log("new User => ", newUser);
     return newUser;
   } catch (error) {
     throw Error(error);

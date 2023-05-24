@@ -18,8 +18,9 @@ const AdminOrder = () => {
       <div>
         {pedidos[0] ? (
           <>
+            <h1>Pedidos</h1>
             {pedidos.map((pedido) => (
-              <CardPedidos key={pedido.id} {...pedido} />
+              <CardPedidos key={pedido.id} pedido={pedido} />
             ))}
           </>
         ) : (

@@ -3,7 +3,7 @@ const { ShoppingCart, User, CartProduct, Product } = require("../models");
 exports.getUserShoppingCart = async (id) => {
   try {
     let shoppingCart = await ShoppingCart.findOne({
-      where: { userId: id },
+      where: { userId: id, purchased: false },
       include: [
         { model: User, as: "user" },
         {
@@ -41,7 +41,6 @@ exports.getAllCarts = async () => {
 
 exports.delete_cart = async (id) => {
   try {
-    console.log("destroyed id", id);
     await ShoppingCart.destroy({ where: { id: id } });
   } catch (error) {
     throw Error(error);

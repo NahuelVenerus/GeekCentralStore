@@ -32,7 +32,7 @@ const Grid = () => {
               ))}
             </>
           ) : (
-            <h1>Productos no encontrados</h1>
+            <h1>Todavía no hay productos</h1>
           )}
         </div>
       </div>
