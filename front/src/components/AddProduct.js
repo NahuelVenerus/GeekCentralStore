@@ -13,7 +13,6 @@ const AddProduct = () => {
   const price = useInput();
   const rating = useInput();
   const image = useInput();
-  // const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const onSubmit = (e) => {
@@ -26,7 +25,9 @@ const AddProduct = () => {
         rating: rating.value,
         image: image.value,
       })
-      .then(() => navigate(`/`));
+      // .then(() => navigate(`/admin-products`));
+      .then(() => navigate(`/admin-products`));
+
     // axios
     //   .get(`${BASE_ROUTE}/api/products`)
     //   .then((res) => dispatch(setProductList(res.data)));

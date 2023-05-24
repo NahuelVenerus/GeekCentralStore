@@ -35,7 +35,7 @@ function Navbar() {
     <div className={"container"}>
       <nav className={"navbar navbar-expand-md navbar-dark fixed-top bg-black"}>
         <div className={"container-fluid"}>
-          <a class="navbar-brand" href="#">
+          <a class="navbar-brand">
             <Link to="/">
               <img
                 src="geekLogo.png"
