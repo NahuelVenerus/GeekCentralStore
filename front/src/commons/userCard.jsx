@@ -1,8 +1,8 @@
 import axios from "axios";
 import { BASE_ROUTE } from "../rutas";
-import { useNavigate } from "react-router";
+import { useEffect } from "react";
+
 const UserCard = ({ user, setDeletedUser }) => {
-  // const navigate = useNavigate();
   console.log("vengo de user card?>", user.is_admin);
   const handleDelete = () => {
     axios
@@ -30,6 +30,8 @@ const UserCard = ({ user, setDeletedUser }) => {
       .then(() => alert("el usuario ya no es admin"));
   };
 
+  useEffect(() => {}, [user]);
+
   return (
     <div className="col d-flex justify-content-center mb-4">
       <div
@@ -42,12 +44,15 @@ const UserCard = ({ user, setDeletedUser }) => {
           <button className="btn btn-info" onClick={handleDelete}>
             borrar cuenta
           </button>
-          <button className="btn btn-info" onClick={handleMakeAdmin}>
-            hacer admin
-          </button>
-          <button className="btn btn-info" onClick={handleMakeNormalUser}>
-            hacer usuario normal
-          </button>
+          {user.is_admin ? (
+            <button className="btn btn-info" onClick={handleMakeNormalUser}>
+              hacer usuario normal
+            </button>
+          ) : (
+            <button className="btn btn-info" onClick={handleMakeAdmin}>
+              hacer admin
+            </button>
+          )}
         </div>
       </div>
     </div>
