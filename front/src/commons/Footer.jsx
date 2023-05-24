@@ -2,19 +2,18 @@ import React from "react";
 
 function Footer() {
   return (
-    <div className="container-fluid bg-black p-3" width={300}>
+    <div className="container-fluid bg-black text-white p-3" width={300}>
       <div className="row d-flex align-items-center">
         <div className="col-4 d-flex justify-content-center">
           <img href="/" src="geekLogo.png" alt="geekCentralLogo" width={200} />
         </div>
-
         <div className="col-4 ">
           <div className="row">
             <div className="col-12 d-flex justify-content-center">
               Visitanos en nuestras redes
             </div>
 
-            <div className="col-6 d-flex justify-content-center">
+            <div className="col-6 d-flex justify-content-end">
               <div>
                 <a href="https://www.instagram.com/">
                   <svg
@@ -31,7 +30,7 @@ function Footer() {
               </div>
             </div>
 
-            <div className="col-6 d-flex justify-content-center">
+            <div className="col-6 d-flex justify-content-start">
               <a href="https://www.facebook.com/">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -49,7 +48,9 @@ function Footer() {
 
           <div className="row mt-3 ">
             <div className="col d-flex justify-content-center">
-              Nuestro What's App
+              Nuestro WhatsApp
+            </div>
+            <div className="col{12} d-flex justify-content-center">
               <a href="https://wa.me/5493813578601">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -75,9 +76,7 @@ function Footer() {
             allowfullscreen=""
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
-          >
-            Nuestra ubicacion
-          </iframe>
+          ></iframe>
         </div>
       </div>
     </div>

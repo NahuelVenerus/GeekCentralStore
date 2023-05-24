@@ -12,9 +12,8 @@ const AdminOrder = () => {
       .then((res) => setPedidos(res.data))
       .catch((error) => console.log(error));
   }, []);
-  console.log("pedidos", pedidos);
   return (
-    <div className="admin">
+    <div>
       <div>
         {pedidos[0] ? (
           <>
