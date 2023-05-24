@@ -3,6 +3,7 @@ import { userReducer } from "./user";
 import { shoppingCartReducer } from "./shoppingCart";
 import { productListReducer } from "./productList";
 import { finalPriceReducer } from "./finalPrice";
+import { userListReducer } from "./usersList";
 
 const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ const store = configureStore({
     shoppingCart: shoppingCartReducer,
     productList: productListReducer,
     finalPrice: finalPriceReducer,
+    userList: userListReducer,
   },
 });
 

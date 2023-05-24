@@ -26,18 +26,16 @@ exports.get_all_user_orders = asyncHandler(async (req, res) => {
 exports.add_new_order = asyncHandler(async (req, res) => {
   try {
     const { total, shoppingCartId, nickname } = req.body;
-    console.log("body", req.body);
-    const user = await searchUser(nickname);
-    console.log("user", user);
+    const { id, email } = await searchUser(nickname);
     const newOrder = await addNewOrder({
       total: total,
       shoppingCartId: shoppingCartId,
-      userId: user.id,
+      userId: id,
     });
-    await delete_cart(shoppingCartId);
-    // console.log("estoy enviando mail");
-    // await sendEmailToUser(user.email);
+    console.log("estoy enviando mail a ", email);
+    // await sendEmailToUser(email);
     res.status(201).send(newOrder);
+    await delete_cart(shoppingCartId);
   } catch (error) {
     throw Error(error);
   }

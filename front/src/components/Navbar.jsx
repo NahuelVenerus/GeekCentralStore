@@ -6,7 +6,6 @@ import { BASE_ROUTE } from "../rutas";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/esm/Button";
-// import { setInitialState } from "../state/productList";
 
 import Searcher from "./Searcher";
 
@@ -27,7 +26,6 @@ function Navbar() {
   };
 
   const handleHome = () => {
-    // dispatch(setInitialState());
     navigate("/");
   };
 
@@ -35,11 +33,11 @@ function Navbar() {
     <div className={"container"}>
       <nav className={"navbar navbar-expand-md navbar-dark fixed-top bg-black"}>
         <div className={"container-fluid"}>
-          <a class="navbar-brand" href="#">
+          <a class="navbar-brand">
             <Link to="/">
               <img
                 src="geekLogo.png"
-                alt="https://www.dropbox.com/s/gnh1qx53scewcjv/geekLogo.png?dl=0"
+                alt="Geek Central Logo"
                 width="300px"
                 height="74.05px"
                 onClick={handleHome}
@@ -53,12 +51,7 @@ function Navbar() {
                 <Button
                   style={{ backgroundColor: "#EF233C", borderColor: "#EF233C" }}
                 >
-                  <img
-                    src="cart.png"
-                    alt="https://www.dropbox.com/s/fzxw4l6ocieldv6/cart.png?dl=0"
-                    width="30px"
-                    height="30px"
-                  />
+                  <img src="cart.png" alt="cart" width="30px" height="30px" />
                 </Button>
               </Link>
               <Link to="/logout">

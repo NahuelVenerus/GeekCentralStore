@@ -13,8 +13,6 @@ const Card = ({ name, price, image, id }) => {
 
   const handleAdd = (e) => {
     e.preventDefault();
-    console.log("ID", id, "NICKNAME", nickname);
-    console.log(`${BASE_ROUTE}/api/cart-products/add`);
     axios
       .post(`${BASE_ROUTE}/api/cart-products/add`, {
         id: id,
@@ -53,7 +51,7 @@ const Card = ({ name, price, image, id }) => {
           confirmButtonText: "Aceptar",
         });
         dispatch(setProductList(prod));
-        navigate("/");
+        navigate("/admin-products");
       });
   };
 
