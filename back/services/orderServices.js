@@ -6,7 +6,7 @@ exports.getAllOrders = async () => {
     const orders = await Order.findAll({
       include: [
         { model: User, as: "user" },
-        { model: ShoppingCart, as: "shopping-cart" },
+        { model: ShoppingCart, as: "shopping_cart" },
       ],
     });
     return orders;
@@ -29,7 +29,12 @@ exports.getAllUserOrders = async (id) => {
 
 exports.addNewOrder = async (createdOrder) => {
   try {
-    const newOrder = await Order.create(createdOrder);
+    const { total, shopping_cartId, userId } = createdOrder;
+    const newOrder = await Order.create({
+      total: total,
+      shopping_cartId: shopping_cartId,
+      userId: userId,
+    });
     return newOrder;
   } catch (error) {
     throw Error(error);
