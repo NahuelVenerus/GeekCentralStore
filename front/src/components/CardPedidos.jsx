@@ -18,15 +18,15 @@ const CartPedidos = ({ pedido }) => {
             <p style={{ height: "10%" }}></p>
             <p>Email: {user.email}</p>
             <p style={{ height: "10%" }}></p>
-            <p>Address: {user.address}</p>
+            <p>Dirección: {user.address}</p>
           </Col>
           <Col>
-            <Card.Subtitle className="mb-2 text-muted">Products</Card.Subtitle>
+            <Card.Subtitle className="mb-2 text-muted">Productos</Card.Subtitle>
             {products.map((product) => (
               <div key={product.product.id}>
-                <p>Name: {product.product.name}</p>
-                <p>Price: {product.product.price}</p>
-                <p>Quantity: {product.product.quantity}</p>
+                <p>Producto: {product.product.name}</p>
+                <p>Precio: {product.product.price}</p>
+                <p>Cantidad: {product.product.quantity}</p>
               </div>
             ))}
             <Card.Subtitle className="mb-2 text-muted">
