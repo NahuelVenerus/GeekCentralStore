@@ -6,6 +6,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { useNavigate } from "react-router";
+import Swal from "sweetalert2";
 
 const AddProduct = () => {
   const name = useInput();
@@ -25,7 +26,14 @@ const AddProduct = () => {
         rating: rating.value,
         image: image.value,
       })
-      .then(() => navigate(`/`));
+      .then(() => {
+        Swal.fire({
+          text: "Producto creado con éxito",
+          icon: "success",
+          confirmButtonText: "Aceptar",
+        });
+        navigate(`/`);
+      });
   };
 
   return (
