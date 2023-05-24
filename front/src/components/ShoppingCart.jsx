@@ -82,7 +82,7 @@ export default function ShoppingCart() {
 
   return (
     <div>
-      {products[0] ? (
+      {products ? (
         <Swiper
           slidesPerView={3}
           spaceBetween={20}
