@@ -5,7 +5,8 @@ import axios from "axios";
 import { BASE_ROUTE } from "../rutas";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { setInitialState } from "../state/productList";
+import Button from "react-bootstrap/esm/Button";
+// import { setInitialState } from "../state/productList";
 
 import Searcher from "./Searcher";
 
@@ -26,7 +27,8 @@ function Navbar() {
   };
 
   const handleHome = () => {
-    dispatch(setInitialState());
+    // dispatch(setInitialState());
+    navigate("/");
   };
 
   return (
@@ -37,7 +39,7 @@ function Navbar() {
             <Link to="/">
               <img
                 src="geekLogo.png"
-                alt=""
+                alt="https://www.dropbox.com/s/gnh1qx53scewcjv/geekLogo.png?dl=0"
                 width="300px"
                 height="74.05px"
                 onClick={handleHome}
@@ -46,9 +48,18 @@ function Navbar() {
           </a>
           <Searcher />
           {user.nickname ? (
-            <div>
+            <div className={"d-flex justify-content-end"}>
               <Link to={`/shopping-cart/${user.nickname}`}>
-                <button>Carrito</button>
+                <Button
+                  style={{ backgroundColor: "#EF233C", borderColor: "#EF233C" }}
+                >
+                  <img
+                    src="cart.png"
+                    alt="https://www.dropbox.com/s/fzxw4l6ocieldv6/cart.png?dl=0"
+                    width="30px"
+                    height="30px"
+                  />
+                </Button>
               </Link>
               <Link to="/logout">
                 <button
@@ -74,7 +85,6 @@ function Navbar() {
               </Link>
             </div>
           )}
-          {/* <Searcher /> */}
         </div>
       </nav>
     </div>

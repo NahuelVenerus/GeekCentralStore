@@ -18,6 +18,7 @@ import AdminOrder from "./components/AdminOrder";
 import AdminProducts from "./components/AdminProducts";
 import AddProduct from "./components/AddProduct";
 import ManageUsers from "./components/ManageUsers";
+import EditProduct from "./components/EditProduct";
 
 function App() {
   const dispatch = useDispatch();
@@ -30,7 +31,7 @@ function App() {
   }, [dispatch]);
 
   return (
-    <div className="App">
+    <div className="App" style={{ color: "#EF233C" }}>
       <Navbar />
       <Routes>
         <Route path="/signup" element={<SignUp />} />
@@ -45,6 +46,7 @@ function App() {
         <Route path="/add-product" element={<AddProduct />} />
         <Route path="/admin-order" element={<AdminOrder />} />
         <Route path="/admin/manage-users" element={<ManageUsers />} />
+        <Route path="/EditProduct/:id" element={<EditProduct />} />
       </Routes>
       <Footer />
     </div>

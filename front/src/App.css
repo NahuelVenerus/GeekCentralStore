@@ -1,8 +1,12 @@
+.footerBackground{
+  background-color: #2b2d42;
+}
+
 .App {
   text-align: center;
   padding: 10%;
-  background: #2b2d42;
-}
+  background-color: #2b2d42;
+} 
 
 .App-logo {
   height: 40vmin;
@@ -56,4 +60,8 @@
 }
 .pink-shadow {
   box-shadow: 10px 10px 10px #f82d97;
+}
+
+.admin {
+  height: 500px;
 }

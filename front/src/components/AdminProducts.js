@@ -30,8 +30,10 @@ const AdminProducts = () => {
       ) : (
         <h1>No products in stock </h1>
       )}
-      <button class="btn btn-primary me-md-2" type="button">
-        <Link to="/add-product">Add product</Link>
+      <button className="btn btn-primary me-md-2" type="button">
+        <Link to="/add-product" style={{ color: "white" }}>
+          Add product
+        </Link>
       </button>
     </div>
   );

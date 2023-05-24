@@ -2,8 +2,18 @@ const asyncHandler = require("express-async-handler");
 const { getAllOrders, addNewOrder } = require("../services/orderServices");
 const { sendEmailToUser } = require("../services/mailSenderServices");
 const { searchUser } = require("../services/userServices");
+const { delete_cart } = require("../services/shoppingCartServices");
 
 exports.get_all_orders = asyncHandler(async (req, res) => {
+  try {
+    const orders = await getAllOrders();
+    res.status(200).send(orders);
+  } catch (error) {
+    throw Error(error);
+  }
+});
+
+exports.get_all_user_orders = asyncHandler(async (req, res) => {
   try {
     const { id } = req.body;
     const orders = await getAllOrders(id);
@@ -16,6 +26,7 @@ exports.get_all_orders = asyncHandler(async (req, res) => {
 exports.add_new_order = asyncHandler(async (req, res) => {
   try {
     const { total, shoppingCartId, nickname } = req.body;
+    console.log("body", req.body);
     const user = await searchUser(nickname);
     console.log("user", user);
     const newOrder = await addNewOrder({
@@ -23,6 +34,7 @@ exports.add_new_order = asyncHandler(async (req, res) => {
       shoppingCartId: shoppingCartId,
       userId: user.id,
     });
+    await delete_cart(shoppingCartId);
     // console.log("estoy enviando mail");
     // await sendEmailToUser(user.email);
     res.status(201).send(newOrder);

@@ -1,57 +1,54 @@
 import React from "react";
-import useInput from "../hooks/useInput";
-import axios from "axios";
-import { BASE_ROUTE } from "../rutas";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import { useNavigate } from "react-router";
+import useInput from "../hooks/useInput";
+import axios from "axios";
+import { BASE_ROUTE } from "../rutas";
+import { useNavigate, useParams } from "react-router";
 
-const AddProduct = () => {
+function EditProduct() {
   const name = useInput();
   const description = useInput();
   const price = useInput();
   const rating = useInput();
   const image = useInput();
+  const { id } = useParams();
   const navigate = useNavigate();
 
-  const onSubmit = (e) => {
+  const handleEdit = (e) => {
     e.preventDefault();
     axios
-      .post(`${BASE_ROUTE}/api/products/add`, {
+      .put(`${BASE_ROUTE}/api/admin/edit-product`, {
         name: name.value,
+        id: id,
         description: description.value,
         price: price.value,
         rating: rating.value,
         image: image.value,
       })
-      // .then(() => navigate(`/admin-products`));
-      .then(() => navigate(`/admin-products`));
-
-    // axios
-    //   .get(`${BASE_ROUTE}/api/products`)
-    //   .then((res) => dispatch(setProductList(res.data)));
+      .then(() => navigate("/admin-products"))
+      .catch((error) => console.log(error));
   };
-
   return (
     <div className="container-fluid p-3" style={{ background: "#2B2D42" }}>
       <Card
         className="container-fluid p-3 card-form "
         style={{ width: "50rem" }}
       >
-        <Form className="container" onSubmit={onSubmit}>
+        <Form className="container" onSubmit={handleEdit}>
           <div className="row">
             <Form.Group className="mb-3 p-2" controlId="formBasicEmail">
               <Form.Label>Product name</Form.Label>
               <Form.Control {...name} type="text" placeholder="name" />
             </Form.Group>
 
-            <Form.Group className="mb-3 p-2" controlId="formBasicEmail">
+            <Form.Group className="mb-3 p-2 " controlId="formBasicEmail">
               <Form.Label>Description</Form.Label>
               <Form.Control
                 {...description}
-                as="textarea"
-                placeholder="Description"
+                type="text"
+                placeholder="description"
               />
             </Form.Group>
 
@@ -79,6 +76,6 @@ const AddProduct = () => {
       </Card>
     </div>
   );
-};
+}
 
-export default AddProduct;
+export default EditProduct;

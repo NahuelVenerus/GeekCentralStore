@@ -36,7 +36,6 @@ const Card = ({ name, price, image, id }) => {
       });
   };
 
-  const handleEdit = () => {};
   return (
     <div className="col d-flex justify-content-center mb-4">
       <div
@@ -57,10 +56,12 @@ const Card = ({ name, price, image, id }) => {
 
           {is_admin ? (
             <>
-              <button onClick={handleDelete} className="btn btn-info">
+              <button onClick={handleDelete} className="btn btn-danger">
                 delete
               </button>
-              <button className="btn btn-info">edit</button>
+              <Link to={`/EditProduct/${id}`}>
+                <button className="btn btn-info">edit</button>
+              </Link>
             </>
           ) : (
             <>

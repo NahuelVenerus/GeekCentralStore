@@ -7,29 +7,22 @@ import { useEffect, useState } from "react";
 export default function CarritoCard({
   cartProduct,
   setDeletedProduct,
-  isEditing,
-  setIsEditing,
   total,
   setTotal,
+  editado,
+  setEditado,
 }) {
   const [quantity, setQuantity] = useState(cartProduct.quantity);
-  console.log("cart product", cartProduct);
+  const [isEditing, setIsEditing] = useState(false);
 
   const setCartProductQuantity = () => {
-    console.log("quantity", quantity);
     axios
       .put(`${BASE_ROUTE}/api/cart-products/edit`, {
         id: cartProduct.id,
         quantity: quantity,
       })
       .then((editedProduct) => {
-        console.log("editedProduct quantity", editedProduct.data.quantity);
-        console.log("product price", cartProduct.product.price);
-        setTotal(
-          total +
-            Number(editedProduct.data.quantity * cartProduct.product.price)
-        );
-        console.log("total", total);
+        setEditado(!editado);
       })
       .catch((err) => console.log(err));
   };
@@ -39,7 +32,7 @@ export default function CarritoCard({
   };
 
   const handlerRemove = () => {
-    if (quantity > 0) setQuantity(quantity - 1);
+    if (quantity > 1) setQuantity(quantity - 1);
   };
 
   const handleEdit = () => {
@@ -47,6 +40,7 @@ export default function CarritoCard({
       setIsEditing(false);
       setCartProductQuantity();
     } else setIsEditing(true);
+    console.log("quantity", quantity);
   };
 
   const handleDelete = () => {
@@ -56,10 +50,7 @@ export default function CarritoCard({
           id: cartProduct.product.id,
         },
       })
-      .then((prod) => {
-        console.log("product ", prod);
-        setDeletedProduct(cartProduct.product.id);
-      })
+      .then(() => setDeletedProduct(cartProduct.product.id))
       .catch((err) => console.log(err));
   };
 
