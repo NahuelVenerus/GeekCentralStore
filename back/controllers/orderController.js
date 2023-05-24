@@ -6,6 +6,15 @@ const { delete_cart } = require("../services/shoppingCartServices");
 
 exports.get_all_orders = asyncHandler(async (req, res) => {
   try {
+    const orders = await getAllOrders();
+    res.status(200).send(orders);
+  } catch (error) {
+    throw Error(error);
+  }
+});
+
+exports.get_all_user_orders = asyncHandler(async (req, res) => {
+  try {
     const { id } = req.body;
     const orders = await getAllOrders(id);
     res.status(200).send(orders);

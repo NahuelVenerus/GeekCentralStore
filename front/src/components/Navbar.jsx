@@ -48,8 +48,8 @@ function Navbar() {
           </a>
           <Searcher />
           {user.nickname ? (
-            <div>
-              <Link to="/shopping-cart  ">
+            <div className={"d-flex justify-content-end"}>
+              <Link to={`/shopping-cart/${user.nickname}`}>
                 <Button
                   style={{ backgroundColor: "#EF233C", borderColor: "#EF233C" }}
                 >
