@@ -15,11 +15,11 @@ const AdminViews = () => {
   };
 
   return (
-    <Container fluid>
-      <Row>
-        <Col md={4} className="mb-4">
+    <Container className="container-fluid">
+      <Row className="d-flex justify-content-center">
+        <Col md={4} className="mb-4 d-flex justify-content-center">
           <Link to="/admin-products" className="card-link">
-            <Card>
+            <Card style={{ width: "18rem" }}>
               <Button
                 className="admin-button"
                 style={{
@@ -35,13 +35,13 @@ const AdminViews = () => {
             </Card>
           </Link>
         </Col>
-        <Col md={4} className="mb-4">
+        <Col md={4} className="mb-4 d-flex justify-content-center">
           <Link
             to="/admin-order"
             className="card-link"
             style={{ textDecoration: "none" }}
           >
-            <Card>
+            <Card style={{ width: "18rem" }}>
               <Button
                 className="admin-button"
                 style={{
@@ -58,13 +58,13 @@ const AdminViews = () => {
             </Card>
           </Link>
         </Col>
-        <Col md={4} className="mb-4">
+        <Col md={4} className="mb-4 d-flex justify-content-center">
           <Link
             to="/admin/manage-users"
             className="card-link"
             style={{ textDecoration: "none" }}
           >
-            <Card>
+            <Card style={{ width: "18rem" }}>
               <Button
                 className="admin-button"
                 onclick={handleShowUsers}
