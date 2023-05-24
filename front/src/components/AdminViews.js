@@ -1,8 +1,19 @@
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { BASE_ROUTE } from "../rutas";
+import { setUserList } from "../state/usersList";
 import { Container, Card, Row, Col, Button } from "react-bootstrap";
 
 const AdminViews = () => {
+  const dispatch = useDispatch();
+  const handleShowUsers = () => {
+    axios
+      .get(`${BASE_ROUTE}/api/admin/get-users`)
+      .then((res) => dispatch(setUserList(res.data)));
+  };
+
   return (
     <Container fluid>
       <Row>
@@ -56,6 +67,7 @@ const AdminViews = () => {
             <Card>
               <Button
                 className="admin-button"
+                onclick={handleShowUsers}
                 style={{
                   height: "500px",
                   fontSize: "300%",
