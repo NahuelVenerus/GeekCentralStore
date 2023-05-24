@@ -5,6 +5,7 @@ import { BASE_ROUTE } from "../rutas";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import { useNavigate } from "react-router";
 
 const AddProduct = () => {
   const name = useInput();
@@ -13,8 +14,10 @@ const AddProduct = () => {
   const rating = useInput();
   const image = useInput();
   // const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const onSubmit = () => {
+  const onSubmit = (e) => {
+    e.preventDefault();
     axios.post(`${BASE_ROUTE}/api/products/add`, {
       name: name.value,
       description: description.value,
@@ -22,6 +25,7 @@ const AddProduct = () => {
       rating: rating.value,
       image: image.value,
     });
+    //.then(() => navigate(`/`));
     // axios
     //   .get(`${BASE_ROUTE}/api/products`)
     //   .then((res) => dispatch(setProductList(res.data)));

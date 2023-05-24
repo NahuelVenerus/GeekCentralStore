@@ -2,12 +2,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { BASE_ROUTE } from "../../rutas";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setProductList } from "../../state/productList";
 
 const Card = ({ name, price, image, id }) => {
-  const { nickname } = useSelector((state) => state.user);
+  const { nickname, is_admin } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
-  const handlerAdd = (e) => {
+  const handleAdd = (e) => {
     e.preventDefault();
     console.log("ID", id, "NICKNAME", nickname);
     console.log(`${BASE_ROUTE}/api/cart-products/add`);
@@ -22,6 +24,17 @@ const Card = ({ name, price, image, id }) => {
       });
   };
 
+  const handleDelete = () => {
+    axios
+      .delete(`${BASE_ROUTE}/api/admin/delete-product`, {
+        data: {
+          id: id,
+        },
+      })
+      .then((prod) => dispatch(setProductList(prod)));
+  };
+
+  const handleEdit = () => {};
   return (
     <div className="col d-flex justify-content-center mb-4">
       <div
@@ -39,9 +52,21 @@ const Card = ({ name, price, image, id }) => {
         <div className="card-body">
           <h5 className="card-text">${price}</h5>
           <h5 className="card-text">{name}</h5>
-          <button className="btn btn-info" onClick={handlerAdd}>
-            Agregar al Carrito
-          </button>
+
+          {is_admin ? (
+            <>
+              <button onClick={handleDelete} className="btn btn-info">
+                delete
+              </button>
+              <button className="btn btn-info">edit</button>
+            </>
+          ) : (
+            <>
+              <button className="btn btn-info" onClick={handleAdd}>
+                Agregar al Carrito
+              </button>
+            </>
+          )}
         </div>
       </div>
     </div>
