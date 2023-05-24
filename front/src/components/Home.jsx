@@ -8,7 +8,6 @@ function Home() {
 
   return (
     <div>
-      <h2>Home</h2>
       <div>
         {user.is_admin ? (
           <div>
