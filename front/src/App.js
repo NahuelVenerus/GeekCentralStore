@@ -31,24 +31,28 @@ function App() {
   }, [dispatch]);
 
   return (
-    <div className="App" style={{ color: "#EF233C" }}>
-      <Navbar />
-      <Routes>
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/shopping-cart/:nickname" element={<ShoppingCart />} />
-        <Route path="/logout" element={<Home />} />
-        <Route path="/product-detail/:id" element={<ProductDetail />} />
-        <Route path="/" element={<Home />} />
-        <Route path="/search/:name" element={<Searcher />} />
-        <Route path="/admin" element={<AdminViews />} />
-        <Route path="/admin-products" element={<AdminProducts />} />
-        <Route path="/add-product" element={<AddProduct />} />
-        <Route path="/admin-order" element={<AdminOrder />} />
-        <Route path="/admin/manage-users" element={<ManageUsers />} />
-        <Route path="/EditProduct/:id" element={<EditProduct />} />
-      </Routes>
-      <Footer />
+    <div>
+      <div className="App container-fluid" style={{ color: "#EF233C" }}>
+        <Navbar />
+        <Routes>
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/shopping-cart/:nickname" element={<ShoppingCart />} />
+          <Route path="/logout" element={<Home />} />
+          <Route path="/product-detail/:id" element={<ProductDetail />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/search/:name" element={<Searcher />} />
+          <Route path="/admin" element={<AdminViews />} />
+          <Route path="/admin-products" element={<AdminProducts />} />
+          <Route path="/add-product" element={<AddProduct />} />
+          <Route path="/admin-order" element={<AdminOrder />} />
+          <Route path="/admin/manage-users" element={<ManageUsers />} />
+          <Route path="/EditProduct/:id" element={<EditProduct />} />
+        </Routes>
+      </div>
+      <div>
+        <Footer />
+      </div>
     </div>
   );
 }
