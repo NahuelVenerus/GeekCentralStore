@@ -2,6 +2,7 @@ import React from "react";
 import Grid from "../commons/Grid";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import AdminViews from "./AdminViews";
 
 function Home() {
   const user = useSelector((state) => state.user);
@@ -12,15 +13,13 @@ function Home() {
         {user.is_admin ? (
           <div>
             <Link to="/admin">
-              <button>admin options</button>
+              <AdminViews />
             </Link>
           </div>
         ) : (
-          <div>no soy admin</div>
+          <Grid />
         )}
       </div>
-
-      <Grid />
     </div>
   );
 }

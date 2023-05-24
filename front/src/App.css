@@ -1,8 +1,12 @@
+.footerBackground{
+  background-color: #2b2d42;
+}
+
 .App {
   text-align: center;
   padding: 10%;
-  background: #2b2d42;
-}
+  background-color: #2b2d42;
+} 
 
 .App-logo {
   height: 40vmin;
