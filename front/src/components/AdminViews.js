@@ -25,6 +25,7 @@ const AdminViews = () => {
                 style={{
                   height: "500px",
                   fontSize: "300%",
+                  width: "100%",
                 }}
               >
                 Productos
@@ -48,6 +49,7 @@ const AdminViews = () => {
                   height: "500px",
                   fontSize: "300%",
                   backgroundColor: "#EF233C",
+                  width: "100%",
                 }}
               >
                 Pedidos
@@ -67,14 +69,15 @@ const AdminViews = () => {
             <Card style={{ width: "18rem" }}>
               <Button
                 className="admin-button"
-                onclick={handleShowUsers}
                 style={{
                   height: "500px",
                   fontSize: "300%",
                   backgroundColor: "#59cd90",
+                  width: "100%",
                 }}
+                onClick={handleShowUsers}
               >
-                Usuarios
+                Administrar Usuarios
               </Button>
               <Card.Text>
                 Aquí puedes ver, editar y eliminar los usuarios!

@@ -11,6 +11,6 @@ app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 app.use(express.json());
 app.use("/api", router);
 
-db.sync({ force: true }).then(() =>
+db.sync({ force: false }).then(() =>
   app.listen(PORT, () => console.log(`Listening on port: ${PORT}`))
 );

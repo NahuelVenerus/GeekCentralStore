@@ -105,8 +105,14 @@ export default function ShoppingCart() {
           ))}
           <div ref={navigationPrevRef} className="swiper-button-prev" />
           <div ref={navigationNextRef} className="swiper-button-next" />
-          <h1 style={{ color: "white" }}>Total: ${finalPrice}</h1>
-          <Button onClick={handleBuy}>Comprar</Button>
+          {products[0] ? (
+            <div>
+              <h1 style={{ color: "white" }}>Total: ${finalPrice}</h1>
+              <Button onClick={handleBuy}>Comprar</Button>
+            </div>
+          ) : (
+            <h1>El carrito está vacío</h1>
+          )}
         </Swiper>
       ) : (
         <h1>El carrito está vacío</h1>
