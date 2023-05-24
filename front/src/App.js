@@ -30,7 +30,7 @@ function App() {
   }, [dispatch]);
 
   return (
-    <div className="App">
+    <div className="App" style={{ color: "#EF233C" }}>
       <Navbar />
       <Routes>
         <Route path="/signup" element={<SignUp />} />

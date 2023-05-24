@@ -44,12 +44,12 @@ const AddProduct = () => {
               <Form.Control {...name} type="text" placeholder="name" />
             </Form.Group>
 
-            <Form.Group className="mb-3 p-2 " controlId="formBasicEmail">
+            <Form.Group className="mb-3 p-2" controlId="formBasicEmail">
               <Form.Label>Description</Form.Label>
               <Form.Control
                 {...description}
-                type="text"
-                placeholder="description"
+                as="textarea"
+                placeholder="Description"
               />
             </Form.Group>
 

@@ -5,8 +5,8 @@ import axios from "axios";
 import { BASE_ROUTE } from "../rutas";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { setInitialState } from "../state/productList";
 import Button from "react-bootstrap/esm/Button";
+// import { setInitialState } from "../state/productList";
 
 import Searcher from "./Searcher";
 
@@ -27,7 +27,8 @@ function Navbar() {
   };
 
   const handleHome = () => {
-    dispatch(setInitialState());
+    // dispatch(setInitialState());
+    navigate("/");
   };
 
   return (
@@ -84,7 +85,6 @@ function Navbar() {
               </Link>
             </div>
           )}
-          {/* <Searcher /> */}
         </div>
       </nav>
     </div>
