@@ -1,6 +1,12 @@
+.footerBackground{
+  background-color: #2b2d42;
+}
+
 .App {
   text-align: center;
-}
+  padding: 10%;
+  background-color: #2b2d42;
+} 
 
 .App-logo {
   height: 40vmin;
@@ -35,4 +41,27 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.pepito {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-form {
+  box-shadow: 10px 10px 10px rgba(46, 248, 160, 0.3);
+  font-size: 1.2em;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+.button-card {
+  box-shadow: 10px 10px 10px rgba(46, 248, 160, 0.3);
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande";
+}
+.pink-shadow {
+  box-shadow: 10px 10px 10px #f82d97;
+}
+
+.admin {
+  height: 500px;
 }

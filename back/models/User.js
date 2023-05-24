@@ -1,14 +1,13 @@
 const S = require("sequelize");
-const db = require("../db/index");
 const bc = require("bcrypt");
+const db = require("../config/db/index");
 
 class User extends S.Model {
-  createHash(contraseña, salt) {
-    return bc.hash(contraseña, salt);
+  createHash(password, salt) {
+    return bc.hash(password, salt);
   }
-
-  validatePassword(contraseña) {
-    return this.createHash(contraseña, this.salt).then(
+  validatePassword(password) {
+    return this.createHash(password, this.salt).then(
       (newhash) => newhash === this.password
     );
   }
@@ -16,14 +15,15 @@ class User extends S.Model {
 
 User.init(
   {
-    nombre: { type: S.STRING, require: true },
-    apellido: { type: S.STRING, require: true },
-    direccion: { type: S.STRING, require: true },
-    codigo_postal: { type: S.INTEGER, require: true },
-    ciudad: { type: S.STRING, require: true },
-    email: { type: S.STRING, require: true },
-    contraseña: { type: S.STRING, require: true },
-    // id_cupon: { type: S.INTEGER },
+    name: { type: S.STRING, require: true },
+    nickname: { type: S.STRING, require: true, unique: true },
+    lastname: { type: S.STRING, require: true },
+    address: { type: S.STRING, require: true },
+    zip_code: { type: S.INTEGER, require: true },
+    city: { type: S.STRING, require: true },
+    email: { type: S.STRING, require: true, validate: { isEmail: true } },
+    password: { type: S.STRING, require: true },
+    is_admin: { type: S.BOOLEAN, defaultValue: false },
     salt: { type: S.STRING },
   },
   {
@@ -36,8 +36,8 @@ User.addHook("beforeCreate", (user) => {
   const salt = bc.genSaltSync();
   user.salt = salt;
   return user
-    .createHash(user.contraseña, user.salt)
-    .then((result) => (user.contraseña = result))
+    .createHash(user.password, user.salt)
+    .then((result) => (user.password = result))
     .catch((err) => console.log(err));
 });
 

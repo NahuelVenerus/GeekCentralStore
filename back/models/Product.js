@@ -1,21 +1,21 @@
 const Sequelize = require("sequelize");
-const db = require("../db");
+const db = require("../config/db/index");
 
 class Product extends Sequelize.Model {}
 
 Product.init(
   {
-    nombre: { type: Sequelize.STRING, allowNull: false },
-    precio: { type: Sequelize.FLOAT, allowNull: false },
-    descripcion: { type: Sequelize.STRING, defaultValue: "" },
-    valoracion: { type: Sequelize.FLOAT, defaultValue: 0 },
-    imagen: {
+    name: { type: Sequelize.STRING, allowNull: false },
+    price: { type: Sequelize.FLOAT, allowNull: false },
+    description: { type: Sequelize.STRING, defaultValue: "" },
+    rating: { type: Sequelize.FLOAT, defaultValue: 0 },
+    image: {
       type: Sequelize.STRING,
       defaultValue:
         "https://www.webstoresl.com/sellercenter/assets/images/no-product-image.png",
     },
-    cantVentas: { type: Sequelize.INTEGER, defaultValue: 0 },
-    categoria: { type: Sequelize.STRING, defaultValue: [] },
+    total_sales: { type: Sequelize.INTEGER, defaultValue: 0 },
+    category: { type: Sequelize.ARRAY(Sequelize.STRING), defaultValue: [] },
   },
   { sequelize: db, modelName: "product" }
 );
