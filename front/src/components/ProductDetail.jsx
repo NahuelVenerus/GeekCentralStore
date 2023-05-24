@@ -3,10 +3,43 @@ import { useParams } from "react-router";
 import { BASE_ROUTE } from "../rutas";
 import { useEffect, useState } from "react";
 import { Card, Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+
+import Swal from "sweetalert2";
 
 const ProductDetail = () => {
-  const { id } = useParams();
   const [product, setProduct] = useState({});
+  const { id } = useParams();
+  const { nickname } = useSelector((state) => state.user);
+
+  const navigate = useNavigate();
+
+  const handleAdd = (e) => {
+    e.preventDefault();
+    axios
+      .post(`${BASE_ROUTE}/api/cart-products/add`, {
+        id: id,
+        nickname: nickname,
+      })
+      .then(() => {
+        Swal.fire({
+          text: "Producto agregado al carrito con éxito",
+          icon: "success",
+          confirmButtonText: "Aceptar",
+        });
+        navigate("/");
+      })
+      .catch((error) => {
+        Swal.fire({
+          text: "El producto no se pudo agregar al carrito",
+          icon: "error",
+          confirmButtonText: "Aceptar",
+        });
+        navigate("/");
+        console.log(error);
+      });
+  };
 
   const fetchProduct = (id) => {
     axios
@@ -58,11 +91,14 @@ const ProductDetail = () => {
             >
               <strong style={{ fontSize: "18px" }}>${product.price}</strong>
             </Card.Text>
+
             <Button
+              className="btn btn-info"
+              onClick={handleAdd}
               variant="info"
               style={{ fontSize: "20px", marginBottom: "5%" }}
             >
-              Comprar
+              Agregar al Carrito
             </Button>
           </div>
         </div>
