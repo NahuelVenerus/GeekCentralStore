@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { process.env.REACT_APP_BASE_ROUTE } from "../rutas";
+
 import useInput from "../hooks/useInput";
 import { useNavigate } from "react-router";
 import Form from "react-bootstrap/Form";

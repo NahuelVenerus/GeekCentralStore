@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { process.env.REACT_APP_BASE_ROUTE } from "../rutas";
+
 import CardPedidos from "./CardPedidos";
 
 const AdminOrder = () => {

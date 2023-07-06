@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useParams } from "react-router";
-import { process.env.REACT_APP_BASE_ROUTE } from "../rutas";
+
 import { useEffect, useState } from "react";
 import { Card, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";

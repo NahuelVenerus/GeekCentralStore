@@ -1,7 +1,7 @@
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
-import { process.env.REACT_APP_BASE_ROUTE } from "../rutas";
+
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router";
