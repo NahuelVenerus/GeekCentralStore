@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { BASE_ROUTE } from "../rutas";
+import { process.env.REACT_APP_BASE_ROUTE } from "../rutas";
 import CardPedidos from "./CardPedidos";
 
 const AdminOrder = () => {
@@ -8,7 +8,7 @@ const AdminOrder = () => {
 
   useEffect(() => {
     axios
-      .get(`${BASE_ROUTE}/api/orders`)
+      .get(`${process.env.REACT_APP_BASE_ROUTE}/api/orders`)
       .then((res) => setPedidos(res.data))
       .catch((error) => console.log(error));
   }, []);

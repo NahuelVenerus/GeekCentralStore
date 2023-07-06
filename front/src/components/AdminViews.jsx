@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { BASE_ROUTE } from "../rutas";
+import { process.env.REACT_APP_BASE_ROUTE } from "../rutas";
 import { setUserList } from "../state/usersList";
 import { Container, Card, Row, Col, Button } from "react-bootstrap";
 
@@ -10,7 +10,7 @@ const AdminViews = () => {
   const dispatch = useDispatch();
   const handleShowUsers = () => {
     axios
-      .get(`${BASE_ROUTE}/api/admin/get-users`)
+      .get(`${process.env.REACT_APP_BASE_ROUTE}/api/admin/get-users`)
       .then((res) => dispatch(setUserList(res.data)));
   };
 

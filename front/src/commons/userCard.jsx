@@ -1,12 +1,12 @@
 import axios from "axios";
-import { BASE_ROUTE } from "../rutas";
+import { process.env.REACT_APP_BASE_ROUTE } from "../rutas";
 import { useEffect } from "react";
 
 const UserCard = ({ user, setDeletedUser }) => {
   console.log("vengo de user card?>", user.is_admin);
   const handleDelete = () => {
     axios
-      .delete(`${BASE_ROUTE}/api/admin/remove/${user.nickname}`)
+      .delete(`${process.env.REACT_APP_BASE_ROUTE}/api/admin/remove/${user.nickname}`)
       .then(() => {
         setDeletedUser(user.nickname);
         alert("el usuario a sido eliminado");
@@ -16,7 +16,7 @@ const UserCard = ({ user, setDeletedUser }) => {
 
   const handleMakeAdmin = () => {
     axios
-      .put(`${BASE_ROUTE}/api/users/${user.nickname}`, {
+      .put(`${process.env.REACT_APP_BASE_ROUTE}/api/users/${user.nickname}`, {
         is_admin: true,
       })
       .then(() => alert("el usuario es ahora un admin"));
@@ -24,7 +24,7 @@ const UserCard = ({ user, setDeletedUser }) => {
 
   const handleMakeNormalUser = () => {
     axios
-      .put(`${BASE_ROUTE}/api/users/${user.nickname}`, {
+      .put(`${process.env.REACT_APP_BASE_ROUTE}/api/users/${user.nickname}`, {
         is_admin: false,
       })
       .then(() => alert("el usuario ya no es admin"));

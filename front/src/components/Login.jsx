@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { BASE_ROUTE } from "../rutas";
+import { process.env.REACT_APP_BASE_ROUTE } from "../rutas";
 import { setUser } from "../state/user";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
@@ -19,7 +19,7 @@ function Login() {
     e.preventDefault();
     axios
       .post(
-        `${BASE_ROUTE}/api/users/login`,
+        `${process.env.REACT_APP_BASE_ROUTE}/api/users/login`,
         {
           nickname: nickname.value,
           password: password.value,

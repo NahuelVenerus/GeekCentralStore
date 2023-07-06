@@ -1,7 +1,7 @@
 import React from "react";
 import useInput from "../hooks/useInput";
 import axios from "axios";
-import { BASE_ROUTE } from "../rutas";
+import { process.env.REACT_APP_BASE_ROUTE } from "../rutas";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
@@ -19,7 +19,7 @@ const AddProduct = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     axios
-      .post(`${BASE_ROUTE}/api/products/add`, {
+      .post(`${process.env.REACT_APP_BASE_ROUTE}/api/products/add`, {
         name: name.value,
         description: description.value,
         price: price.value,

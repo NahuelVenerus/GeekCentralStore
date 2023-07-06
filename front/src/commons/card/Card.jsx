@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { BASE_ROUTE } from "../../rutas";
+import { process.env.REACT_APP_BASE_ROUTE } from "../../rutas";
 import { useDispatch, useSelector } from "react-redux";
 import { setProductList } from "../../state/productList";
 import Swal from "sweetalert2";
@@ -14,7 +14,7 @@ const Card = ({ name, price, image, id }) => {
   const handleAdd = (e) => {
     e.preventDefault();
     axios
-      .post(`${BASE_ROUTE}/api/cart-products/add`, {
+      .post(`${process.env.REACT_APP_BASE_ROUTE}/api/cart-products/add`, {
         id: id,
         nickname: nickname,
       })
@@ -39,7 +39,7 @@ const Card = ({ name, price, image, id }) => {
 
   const handleDelete = () => {
     axios
-      .delete(`${BASE_ROUTE}/api/admin/delete-product`, {
+      .delete(`${process.env.REACT_APP_BASE_ROUTE}/api/admin/delete-product`, {
         data: {
           id: id,
         },
