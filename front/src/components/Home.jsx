@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Grid from "../commons/Grid";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
