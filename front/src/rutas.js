@@ -1,3 +1,3 @@
-const BASE_ROUTE = "http://localhost:3001";
+const BASE_ROUTE = "https://geek-central-store.onrender.com";
 
 module.exports = { BASE_ROUTE };
