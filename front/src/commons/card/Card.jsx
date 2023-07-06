@@ -1,7 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { process.env.REACT_APP_BASE_ROUTE } from "../../rutas";
 import { useDispatch, useSelector } from "react-redux";
 import { setProductList } from "../../state/productList";
 import Swal from "sweetalert2";
