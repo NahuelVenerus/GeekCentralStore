@@ -30,7 +30,9 @@ function Login() {
         dispatch(setUser(user.data));
         navigate("/");
       })
-      .catch((error) => console.error(error));
+      .catch((err) => {
+        console.log(err);
+        alert("Usuario y/o contraseña incorrectos")});
   };
 
   return (
