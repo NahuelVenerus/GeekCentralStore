@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { process.env.REACT_APP_BASE_ROUTE } from "../rutas";
+
 import { setUser } from "../state/user";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
@@ -32,7 +32,8 @@ function Login() {
       })
       .catch((err) => {
         console.log(err);
-        alert("Usuario y/o contraseña incorrectos")});
+        alert("Usuario y/o contraseña incorrectos");
+      });
   };
 
   return (

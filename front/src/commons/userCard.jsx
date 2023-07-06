@@ -1,12 +1,14 @@
 import axios from "axios";
-import { process.env.REACT_APP_BASE_ROUTE } from "../rutas";
+
 import { useEffect } from "react";
 
 const UserCard = ({ user, setDeletedUser }) => {
   console.log("vengo de user card?>", user.is_admin);
   const handleDelete = () => {
     axios
-      .delete(`${process.env.REACT_APP_BASE_ROUTE}/api/admin/remove/${user.nickname}`)
+      .delete(
+        `${process.env.REACT_APP_BASE_ROUTE}/api/admin/remove/${user.nickname}`
+      )
       .then(() => {
         setDeletedUser(user.nickname);
         alert("el usuario a sido eliminado");

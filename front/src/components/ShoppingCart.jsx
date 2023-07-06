@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation } from "swiper";
 import "swiper/swiper-bundle.min.css";
 import CarritoCard from "../commons/CarritoCard";
-import { process.env.REACT_APP_BASE_ROUTE } from "../rutas";
+
 import axios from "axios";
 import { useNavigate, useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";

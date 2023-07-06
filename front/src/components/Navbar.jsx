@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { setUser } from "../state/user";
 import axios from "axios";
-import { process.env.REACT_APP_BASE_ROUTE } from "../rutas";
+
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/esm/Button";
@@ -17,7 +17,9 @@ function Navbar() {
   const handleLogOut = (e) => {
     e.preventDefault();
     axios
-      .get(`${process.env.REACT_APP_BASE_ROUTE}/api/users/logout`, { withCredentials: true })
+      .get(`${process.env.REACT_APP_BASE_ROUTE}/api/users/logout`, {
+        withCredentials: true,
+      })
       .then((resp) => {
         dispatch(setUser(resp.data));
         navigate("/");

@@ -1,5 +1,4 @@
 import axios from "axios";
-import { process.env.REACT_APP_BASE_ROUTE } from "../rutas";
 
 import useInput from "../hooks/useInput";
 import { useDispatch } from "react-redux";

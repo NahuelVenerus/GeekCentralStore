@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { process.env.REACT_APP_BASE_ROUTE } from "../rutas";
+
 import { setUserList } from "../state/usersList";
 import { Container, Card, Row, Col, Button } from "react-bootstrap";
 

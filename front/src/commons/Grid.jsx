@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { process.env.REACT_APP_BASE_ROUTE } from "../rutas";
+
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { setProductList } from "../state/productList";

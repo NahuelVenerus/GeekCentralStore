@@ -3,7 +3,7 @@ import Card from "../commons/card/Card";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { process.env.REACT_APP_BASE_ROUTE } from "../rutas";
+
 import { setProductList } from "../state/productList";
 
 const AdminProducts = () => {
