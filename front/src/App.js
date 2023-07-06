@@ -7,6 +7,7 @@ import ShoppingCart from "./components/ShoppingCart";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import axios from "axios";
+import Footer from "./commons/Footer";
 import { setUser } from "./state/user";
 import { useDispatch } from "react-redux";
 import ProductDetail from "./components/ProductDetail.jsx";
