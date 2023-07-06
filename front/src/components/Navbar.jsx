@@ -5,6 +5,9 @@ import axios from "axios";
 import { BASE_ROUTE } from "../rutas";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import Button from "react-bootstrap/esm/Button";
+
+import Searcher from "./Searcher";
 
 function Navbar() {
   const dispatch = useDispatch();
@@ -22,31 +25,55 @@ function Navbar() {
       .catch((error) => console.error(error));
   };
 
+  const handleHome = () => {
+    navigate("/");
+  };
+
   return (
-    <nav>
-      <div>
+    <nav className={"navbar navbar-expand-md navbar-dark fixed-top bg-black"}>
+      <div className={"container-fluid"}>
+        <a class="navbar-brand">
+          <Link to="/">
+            <img
+              src="geekLogo.png"
+              alt="Geek Central Logo"
+              width="300px"
+              height="74.05px"
+              onClick={handleHome}
+            />
+          </Link>
+        </a>
+        <Searcher />
         {user.nickname ? (
-          <div>
-            <Link to="/">
-              <button>Home</button>
-            </Link>
-            <Link to="/shopping-cart">
-              <button>Carrito</button>
+          <div className={"d-flex justify-content-end"}>
+            <Link to={`/shopping-cart/${user.nickname}`}>
+              <Button
+                style={{ backgroundColor: "#EF233C", borderColor: "#EF233C" }}
+              >
+                <img src="cart.png" alt="cart" width="30px" height="30px" />
+              </Button>
             </Link>
             <Link to="/logout">
-              <button onClick={handleLogOut}>Logout</button>
+              <button
+                type="button"
+                className={"btn btn-outline-danger"}
+                onClick={handleLogOut}
+              >
+                Logout
+              </button>
             </Link>
           </div>
         ) : (
           <div>
-            <Link to="/">
-              <button>Home</button>
-            </Link>
             <Link to="/login">
-              <button>Login</button>
+              <button type="button" className={"btn btn-outline-danger"}>
+                Login
+              </button>
             </Link>
             <Link to="/signup">
-              <button>Signup</button>
+              <button type="button" className={"btn btn-outline-danger"}>
+                Signup
+              </button>
             </Link>
           </div>
         )}

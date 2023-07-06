@@ -14,7 +14,7 @@ router.post("/signup", signup_user);
 
 router.post("/login", login_user);
 
-router.get("/shopping-cart/:id", get_user_shopping_cart);
+router.get("/shopping-cart/:nickname", get_user_shopping_cart);
 
 router.put("/:nickname", update_user_data);
 

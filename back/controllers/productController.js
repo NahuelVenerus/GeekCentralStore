@@ -5,12 +5,23 @@ const {
   addNewProduct,
   deleteProduct,
   editProduct,
+  getProductsByName,
 } = require("../services/productServices");
 
 exports.get_all_products = asyncHandler(async (req, res) => {
   try {
     let productsOnStock = await getAllProducts();
     res.status(200).send(productsOnStock);
+  } catch (error) {
+    throw Error(error);
+  }
+});
+
+exports.get_product_by_name = asyncHandler(async (req, res) => {
+  try {
+    const { name } = req.params;
+    const results = await getProductsByName(name);
+    res.status(200).send(results);
   } catch (error) {
     throw Error(error);
   }
@@ -39,8 +50,8 @@ exports.add_new_product = asyncHandler(async (req, res) => {
 exports.delete_product = asyncHandler(async (req, res) => {
   try {
     const { id } = req.body;
-    await deleteProduct(id);
-    res.sendStatus(202);
+    const deletedProduct = await deleteProduct(id);
+    res.status(200).send(deletedProduct);
   } catch (error) {
     throw Error(error);
   }
