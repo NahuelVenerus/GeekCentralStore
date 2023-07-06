@@ -3,7 +3,7 @@ import Card from "../commons/card/Card";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { BASE_ROUTE } from "../rutas";
+import { process.env.REACT_APP_BASE_ROUTE } from "../rutas";
 import { setProductList } from "../state/productList";
 
 const AdminProducts = () => {
@@ -12,7 +12,7 @@ const AdminProducts = () => {
 
   useEffect(() => {
     axios
-      .get(`${BASE_ROUTE}/api/products`)
+      .get(`${process.env.REACT_APP_BASE_ROUTE}/api/products`)
       .then((res) => dispatch(setProductList(res.data)));
   }, [dispatch]);
 

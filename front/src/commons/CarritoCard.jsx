@@ -1,7 +1,7 @@
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
-import { BASE_ROUTE } from "../rutas";
+import { process.env.REACT_APP_BASE_ROUTE } from "../rutas";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router";
@@ -20,7 +20,7 @@ export default function CarritoCard({
 
   const setCartProductQuantity = () => {
     axios
-      .put(`${BASE_ROUTE}/api/cart-products/edit`, {
+      .put(`${process.env.REACT_APP_BASE_ROUTE}/api/cart-products/edit`, {
         id: cartProduct.id,
         quantity: quantity,
       })
@@ -48,7 +48,7 @@ export default function CarritoCard({
 
   const handleDelete = () => {
     axios
-      .delete(`${BASE_ROUTE}/api/cart-products/remove`, {
+      .delete(`${process.env.REACT_APP_BASE_ROUTE}/api/cart-products/remove`, {
         data: {
           id: cartProduct.product.id,
         },

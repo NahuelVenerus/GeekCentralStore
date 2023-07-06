@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import useInput from "../hooks/useInput";
 import axios from "axios";
-import { BASE_ROUTE } from "../rutas";
+import { process.env.REACT_APP_BASE_ROUTE } from "../rutas";
 import { useNavigate, useParams } from "react-router";
 
 function EditProduct() {
@@ -19,7 +19,7 @@ function EditProduct() {
   const handleEdit = (e) => {
     e.preventDefault();
     axios
-      .put(`${BASE_ROUTE}/api/admin/edit-product`, {
+      .put(`${process.env.REACT_APP_BASE_ROUTE}/api/admin/edit-product`, {
         name: name.value,
         id: id,
         description: description.value,

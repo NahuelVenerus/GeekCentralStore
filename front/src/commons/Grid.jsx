@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { BASE_ROUTE } from "../rutas";
+import { process.env.REACT_APP_BASE_ROUTE } from "../rutas";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { setProductList } from "../state/productList";
@@ -10,7 +10,7 @@ const Grid = () => {
   const dispatch = useDispatch();
   const fetchProducts = () => {
     axios
-      .get(`${BASE_ROUTE}/api/products/`)
+      .get(`${process.env.REACT_APP_BASE_ROUTE}/api/products/`)
       .then((products) => {
         dispatch(setProductList(products.data));
       })

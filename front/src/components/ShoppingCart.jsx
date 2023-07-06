@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation } from "swiper";
 import "swiper/swiper-bundle.min.css";
 import CarritoCard from "../commons/CarritoCard";
-import { BASE_ROUTE } from "../rutas";
+import { process.env.REACT_APP_BASE_ROUTE } from "../rutas";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
@@ -28,7 +28,7 @@ export default function ShoppingCart() {
   const fetchCarts = async () => {
     try {
       const createdCart = await axios.get(
-        `${BASE_ROUTE}/api/users/shopping-cart/${nickname}`
+        `${process.env.REACT_APP_BASE_ROUTE}/api/users/shopping-cart/${nickname}`
       );
       createdCart.data.cart_product?.sort(function (a, b) {
         return a.productId - b.productId;
@@ -43,7 +43,7 @@ export default function ShoppingCart() {
 
   const handleBuy = () => {
     axios
-      .post(`${BASE_ROUTE}/api/orders/create`, {
+      .post(`${process.env.REACT_APP_BASE_ROUTE}/api/orders/create`, {
         total: total,
         shoppingCartId: products[0].shoppingCartId,
         nickname: nickname,

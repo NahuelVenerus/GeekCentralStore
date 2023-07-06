@@ -1,5 +1,5 @@
 import axios from "axios";
-import { BASE_ROUTE } from "../rutas";
+import { process.env.REACT_APP_BASE_ROUTE } from "../rutas";
 
 import useInput from "../hooks/useInput";
 import { useDispatch } from "react-redux";
@@ -12,7 +12,7 @@ const Searcher = () => {
   const fetchProducts = async (search) => {
     try {
       const searchResults = await axios.get(
-        `${BASE_ROUTE}/api/search/${search}`
+        `${process.env.REACT_APP_BASE_ROUTE}/api/search/${search}`
       );
       dispatch(setProductList(searchResults.data));
       searchInput.setValue("");

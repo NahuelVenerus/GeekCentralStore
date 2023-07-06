@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useParams } from "react-router";
-import { BASE_ROUTE } from "../rutas";
+import { process.env.REACT_APP_BASE_ROUTE } from "../rutas";
 import { useEffect, useState } from "react";
 import { Card, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
@@ -18,7 +18,7 @@ const ProductDetail = () => {
   const handleAdd = (e) => {
     e.preventDefault();
     axios
-      .post(`${BASE_ROUTE}/api/cart-products/add`, {
+      .post(`${process.env.REACT_APP_BASE_ROUTE}/api/cart-products/add`, {
         id: id,
         nickname: nickname,
       })
@@ -43,7 +43,7 @@ const ProductDetail = () => {
 
   const fetchProduct = (id) => {
     axios
-      .get(`${BASE_ROUTE}/api/products/${id}`)
+      .get(`${process.env.REACT_APP_BASE_ROUTE}/api/products/${id}`)
       .then((fetchedProduct) => {
         setProduct(fetchedProduct.data);
         console.log("fetched product", fetchedProduct.data);
