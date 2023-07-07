@@ -1,13 +1,11 @@
 import { React, useEffect } from "react";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
-import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import ShoppingCart from "./components/ShoppingCart";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import axios from "axios";
-import Footer from "./commons/Footer";
 import { setUser } from "./state/user";
 import { useDispatch } from "react-redux";
 import ProductDetail from "./components/ProductDetail.jsx";
@@ -32,28 +30,22 @@ function App() {
   }, [dispatch]);
 
   return (
-    <div>
-      <div className="App container-fluid" style={{ color: "#EF233C" }}>
-        <Navbar />
-        <Routes>
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/shopping-cart/:nickname" element={<ShoppingCart />} />
-          <Route path="/logout" element={<Home />} />
-          <Route path="/product-detail/:id" element={<ProductDetail />} />
-          <Route path="/" element={<Home />} />
-          <Route path="/search/:name" element={<Searcher />} />
-          <Route path="/admin" element={<AdminViews />} />
-          <Route path="/admin-products" element={<AdminProducts />} />
-          <Route path="/add-product" element={<AddProduct />} />
-          <Route path="/admin-order" element={<AdminOrder />} />
-          <Route path="/admin/manage-users" element={<ManageUsers />} />
-          <Route path="/EditProduct/:id" element={<EditProduct />} />
-        </Routes>
-      </div>
-      <div>
-        <Footer />
-      </div>
+    <div className="App container-fluid" style={{ color: "#EF233C" }}>
+      <Routes>
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/shopping-cart/:nickname" element={<ShoppingCart />} />
+        <Route path="/logout" element={<Home />} />
+        <Route path="/product-detail/:id" element={<ProductDetail />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/search/:name" element={<Searcher />} />
+        <Route path="/admin" element={<AdminViews />} />
+        <Route path="/admin-products" element={<AdminProducts />} />
+        <Route path="/add-product" element={<AddProduct />} />
+        <Route path="/admin-order" element={<AdminOrder />} />
+        <Route path="/admin/manage-users" element={<ManageUsers />} />
+        <Route path="/EditProduct/:id" element={<EditProduct />} />
+      </Routes>
     </div>
   );
 }
