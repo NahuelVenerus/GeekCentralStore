@@ -8,19 +8,15 @@ function Home() {
   const user = useSelector((state) => state.user);
 
   return (
-    <div>
-      <div>
-        {user.is_admin ? (
-          <div>
-            <Link to="/admin">
-              <AdminViews />
-            </Link>
-          </div>
-        ) : (
-          <Grid />
-        )}
-      </div>
-    </div>
+    <>
+      {user.is_admin ? (
+        <Link to="/admin">
+          <AdminViews />
+        </Link>
+      ) : (
+        <Grid />
+      )}
+    </>
   );
 }
 
