@@ -12,6 +12,7 @@ const AdminOrder = () => {
       .then((res) => setPedidos(res.data))
       .catch((error) => console.log(error));
   }, []);
+
   return (
     <div>
       <div>
